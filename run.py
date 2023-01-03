@@ -5,10 +5,31 @@
 print("***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***")
 
 # user inputs:
-name = input("Please enter your name: ")
-surname = input("Please enter your surname: ")
-fullname = name.capitalize() + " " + surname.capitalize()
-licence = input("Please enter your licence type (F for full and P for provisional): ")
+
+
+def get_name():
+    """
+    Get the name of the user
+    """
+    name = str(input("Please enter your name: "))
+    return name
+
+
+def get_licence_type():
+    """
+    Get the correct licence type
+    """
+    licence = str(input("Please enter your licence type (F for full and P for provisional): "))
+    licence = licence.capitalize()
+
+    while licence != ("P" or "F"):
+        licence = str(input("Wrong data input. Please use F or P only: "))
+        licence = licence.capitalize()
+
+    return licence
+
+name = get_name()
+licence = get_licence_type()
 gender = input("Please enter your gender (M for male and F for female): ")
 weight = float(input("Please enter your weight in KG: "))
 drinks = int(input("How many drinks you took? "))
@@ -50,10 +71,11 @@ else:
     print("ERROR! WRONG TYPE OF LICENCE!")
 
 # FINAL OUTPUT
+
 print("*"*22)
 print("* FINAL CALCULATION: *")
 print("*"*65)
-print("Name:", fullname)
+print("Name:", name)
 print("Licence type:", licence)
 print("Weight:",weight)
 print("Hours from last drink:",ingestion)

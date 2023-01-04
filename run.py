@@ -1,8 +1,18 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
-print("***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***")
+import os
+
+
+def clear():
+    """
+    Clear screen function
+    """
+    os.system("cls" if os.name == "nt" else "clear")
+
+
+print("***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***\n")
+input("Press enter to continue...")
+clear()
 
 # user inputs:
 
@@ -15,22 +25,52 @@ def get_name():
     return name
 
 
+def two_options_validation(a, b, user_choice):
+    """
+    Function is checking if user selected one of two correct options
+    """
+    try:
+        user_choice = user_choice.capitalize()
+        if user_choice != a and user_choice != b:
+            raise ValueError(
+                f"Wrong data - you entered {user_choice}. Please use {a} or {b} ONLY!"
+            )
+    except ValueError as e:
+        print(f"ERROR {e}")
+        return False
+
+    return True
+
+
 def get_licence_type():
     """
     Get the correct licence type
     """
-    licence = str(input("Please enter your licence type (F for full and P for provisional): "))
+    while True:
+        licence = input("Please enter your licence type (P for provisional and F for full): ")
+        if two_options_validation("P", "F", licence):
+            break
+        
     licence = licence.capitalize()
-
-    while licence != ("P" or "F"):
-        licence = str(input("Wrong data input. Please use F or P only: "))
-        licence = licence.capitalize()
-
     return licence
+
+
+def get_gender_type():
+    """
+    Get the gender type of user
+    """
+    while True:
+        gender = input("Please enter your gender (M for male and F for female): ")
+        if two_options_validation("M", "F", gender):
+            break
+
+    gender = gender.capitalize()
+    return gender
+
 
 name = get_name()
 licence = get_licence_type()
-gender = input("Please enter your gender (M for male and F for female): ")
+gender = get_gender_type()
 weight = float(input("Please enter your weight in KG: "))
 drinks = int(input("How many drinks you took? "))
 milliliters = int(input("Number of milliliters per drink? "))
@@ -38,9 +78,11 @@ percentage = float(input("How strong they were? Input percentage of alcohol: "))
 ingestion = int(input("How many hours ago you have had a last drink? (please enter the full hours): "))
 
 # constants:
-fractionOfFluid = 0.806
-gravityOfAlcohol = 0.79
-metabolism = 0.012
+FRACTIONOFFLUID = 0.806
+GRAVITYOFALCOHOL = 0.79
+METABOLISM = 0.012
+
+# variables
 fluidFractionOfBody = 0
 legalLimit = 0
 
@@ -53,8 +95,8 @@ else:
     print("ERROR! WRONG GENDER!")
 
 # BAC formula calculation
-BAC = ((fractionOfFluid * drinks * milliliters * percentage * gravityOfAlcohol) / \
-      (weight * fluidFractionOfBody * 1000)) - (metabolism * ingestion)
+BAC = ((FRACTIONOFFLUID * drinks * milliliters * percentage * GRAVITYOFALCOHOL) / \
+      (weight * fluidFractionOfBody * 1000)) - (METABOLISM * ingestion)
 
 # number of drink check
 if drinks <= 0:

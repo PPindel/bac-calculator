@@ -1,6 +1,7 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 import os
+import pyfiglet
 
 
 def clear():
@@ -10,9 +11,13 @@ def clear():
     os.system("cls" if os.name == "nt" else "clear")
 
 
-print("***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***\n")
-input("Press enter to continue...")
-clear()
+def welcome_screen():
+    clear()
+    print(pyfiglet.figlet_format("B A C\nCALCULATOR"))
+    print("***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***\n")
+    input("Press enter to continue...")
+    clear()
+
 
 # user inputs:
 
@@ -68,6 +73,7 @@ def get_gender_type():
     return gender
 
 
+welcome_screen()
 name = get_name()
 licence = get_licence_type()
 gender = get_gender_type()

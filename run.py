@@ -118,6 +118,15 @@ def body_weight():
     return users_weight
 
 
+def bac_calculation():
+    """
+    BAC formula calculation
+    """
+    bac_formula = ((FRACTIONOFFLUID * drinks * milliliters * percentage * GRAVITYOFALCOHOL) / \
+        (weight * fluid_fraction * 1000)) - (METABOLISM * ingestion)
+    return bac_formula
+
+
 welcome_screen()
 name = get_name()
 licence = get_licence_type()
@@ -125,15 +134,11 @@ legal_limit = legal_limit()
 gender = get_gender_type()
 fluid_fraction = fluid_fraction_of_body()
 weight = body_weight()
-drinks = int(input("How many drinks you took?\n"))
-milliliters = int(input("Number of milliliters per drink?\n"))
+drinks = float((input("How many drinks you took?\n")))
+milliliters = float((input("Number of milliliters per drink?\n")))
 percentage = float(input("How strong they were? Input percentage of alcohol:\n"))
-ingestion = int(input("How many hours ago you have had a last drink? (please enter the full hours):\n"))
-
-
-# BAC formula calculation
-BAC = ((FRACTIONOFFLUID * drinks * milliliters * percentage * GRAVITYOFALCOHOL) / \
-      (weight * fluid_fraction * 1000)) - (METABOLISM * ingestion)
+ingestion = float((input("How many hours ago you have had a last drink?:\n")))
+bac = bac_calculation()
 
 # number of drink check
 if drinks <= 0:
@@ -150,10 +155,10 @@ print("Name:", name)
 print("Licence type:", licence)
 print("Weight:", weight)
 print("Hours from last drink:", ingestion)
-print("Blood alcohol content:", BAC.__round__(3))
+print("Blood alcohol content:", bac.__round__(3))
 print("Your legal limit:", legal_limit)
 
-if BAC > legal_limit:
+if bac > legal_limit:
     print("Your blood alcohol content is over legal limit! You cannot drive!")
 else:
     print("Your blood alcohol content is under legal limit! You can drive!")

@@ -84,13 +84,12 @@ def fluid_fraction_of_body():
     """
     Function defines fluid fraction of body based on gender
     """
-    fluid_fraction_of_body = 0
     if gender == "M":
-        fluid_fraction_of_body = 0.58
+        fluid_fraction_of_user = 0.58
     elif gender == "F":
-        fluid_fraction_of_body = 0.49
+        fluid_fraction_of_user = 0.49
     
-    return fluid_fraction_of_body
+    return fluid_fraction_of_user
 
 
 def number_validation(message_for_user):
@@ -106,6 +105,15 @@ def number_validation(message_for_user):
     return users_number
 
 
+def drinks_checker():
+    """
+    Number of drinks check
+    """
+    if drinks <= 0:
+        print("You are totally sober! Well done!")
+        quit()
+
+
 def bac_calculation():
     """
     BAC formula calculation
@@ -113,6 +121,27 @@ def bac_calculation():
     bac_formula = ((FRACTIONOFFLUID * drinks * milliliters * percentage * GRAVITYOFALCOHOL) / \
         (weight * users_fluid_fraction * 1000)) - (METABOLISM * ingestion)
     return bac_formula
+
+
+def final_output():
+    """
+    Final output
+    """
+    print("*"*22)
+    print("* FINAL CALCULATION: *")
+    print("*"*80)
+    print("Name:", name)
+    print("Licence type:", licence)
+    print("Weight:", weight)
+    print("Hours from last drink:", ingestion)
+    print("Blood alcohol content:", bac.__round__(3))
+    print("Your legal limit:", legal_limit)
+
+    if bac > legal_limit:
+        print("Your blood alcohol content is over legal limit! You cannot drive!")
+    else:
+        print("Your blood alcohol content is under legal limit! You can drive!")
+    print("*"*80)
 
 
 welcome_screen()
@@ -123,31 +152,9 @@ gender = letter_choice("Enter your gender (M for male and F for female):\n", "M"
 users_fluid_fraction = fluid_fraction_of_body()
 weight = number_validation("Please enter your weight in KG:\n")
 drinks = number_validation("How many drinks you took?\n")
+drinks_checker()
 milliliters = number_validation("Number of milliliters per drink?\n")
 percentage = number_validation("How strong they were? Input percentage of alcohol (do not use % sign):\n")
 ingestion = number_validation("How many hours ago you have had a last drink?:\n")
 bac = bac_calculation()
-
-# number of drink check
-if drinks <= 0:
-    print("You are totally sober! Well done!")
-else:
-    print("Ok, lets see how drunk you are...")
-
-# FINAL OUTPUT
-
-print("*"*22)
-print("* FINAL CALCULATION: *")
-print("*"*80)
-print("Name:", name)
-print("Licence type:", licence)
-print("Weight:", weight)
-print("Hours from last drink:", ingestion)
-print("Blood alcohol content:", bac.__round__(3))
-print("Your legal limit:", legal_limit)
-
-if bac > legal_limit:
-    print("Your blood alcohol content is over legal limit! You cannot drive!")
-else:
-    print("Your blood alcohol content is under legal limit! You can drive!")
-print("*"*80)
+final_output()

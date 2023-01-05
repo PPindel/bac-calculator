@@ -10,10 +10,13 @@ def clear():
 
 
 def welcome_screen():
+    """
+    First function in the program, welcomes the user
+    """
     clear()
     print(pyfiglet.figlet_format("B A C\nCALCULATOR"))
     print("***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***\n")
-    input("Press enter to continue...")
+    input("Press enter to continue...\n")
     clear()
 
 
@@ -24,7 +27,7 @@ def get_name():
     """
     Get the name of the user
     """
-    input_name = str(input("Please enter your name: "))
+    input_name = str(input("Please enter your name:\n"))
     return input_name
 
 
@@ -50,7 +53,7 @@ def get_licence_type():
     Get the correct licence type
     """
     while True:
-        input_licence = input("Please enter your licence type (P for provisional and F for full): ")
+        input_licence = input("Please enter your licence type (P for provisional and F for full):\n")
         if two_options_validation("P", "F", input_licence):
             break
         
@@ -76,7 +79,7 @@ def get_gender_type():
     Get the gender type of user
     """
     while True:
-        input_gender = input("Enter your gender (M for male and F for female): ")
+        input_gender = input("Enter your gender (M for male and F for female):\n")
         if two_options_validation("M", "F", input_gender):
             break
 
@@ -103,11 +106,11 @@ licence = get_licence_type()
 legal_limit = legal_limit()
 gender = get_gender_type()
 fluid_fraction = fluid_fraction_of_body()
-weight = float(input("Please enter your weight in KG: "))
-drinks = int(input("How many drinks you took? "))
-milliliters = int(input("Number of milliliters per drink? "))
-percentage = float(input("How strong they were? Input percentage of alcohol: "))
-ingestion = int(input("How many hours ago you have had a last drink? (please enter the full hours): "))
+weight = float(input("Please enter your weight in KG:\n"))
+drinks = int(input("How many drinks you took?\n"))
+milliliters = int(input("Number of milliliters per drink?\n"))
+percentage = float(input("How strong they were? Input percentage of alcohol:\n"))
+ingestion = int(input("How many hours ago you have had a last drink? (please enter the full hours):\n"))
 
 # constants:
 FRACTIONOFFLUID = 0.806

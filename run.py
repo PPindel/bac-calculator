@@ -1,6 +1,11 @@
 import os
 import pyfiglet
 
+# constants:
+FRACTIONOFFLUID = 0.806
+GRAVITYOFALCOHOL = 0.79
+METABOLISM = 0.012
+
 
 def clear():
     """
@@ -100,22 +105,31 @@ def fluid_fraction_of_body():
     return fluid_fraction_of_body
 
 
+def body_weight():
+    """
+    Get user's weight
+    """
+    while True:
+        try:
+            users_weight = float(input("Please enter your weight in KG:\n"))
+            break
+        except ValueError:
+            print("Invalid value! Please use a numbers only!")
+    return users_weight
+
+
 welcome_screen()
 name = get_name()
 licence = get_licence_type()
 legal_limit = legal_limit()
 gender = get_gender_type()
 fluid_fraction = fluid_fraction_of_body()
-weight = float(input("Please enter your weight in KG:\n"))
+weight = body_weight()
 drinks = int(input("How many drinks you took?\n"))
 milliliters = int(input("Number of milliliters per drink?\n"))
 percentage = float(input("How strong they were? Input percentage of alcohol:\n"))
 ingestion = int(input("How many hours ago you have had a last drink? (please enter the full hours):\n"))
 
-# constants:
-FRACTIONOFFLUID = 0.806
-GRAVITYOFALCOHOL = 0.79
-METABOLISM = 0.012
 
 # BAC formula calculation
 BAC = ((FRACTIONOFFLUID * drinks * milliliters * percentage * GRAVITYOFALCOHOL) / \

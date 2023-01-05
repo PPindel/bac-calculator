@@ -53,17 +53,18 @@ def two_options_validation(a, b, user_choice):
     return True
 
 
-def get_licence_type():
+def letter_choice(message_to_display, first_option, second_option):
     """
-    Get the correct licence type
+    Get the correct alfabetical value from user
+    (Licence type and gender type in this program so far...)
     """
     while True:
-        input_licence = input("Please enter your licence type (P for provisional and F for full):\n")
-        if two_options_validation("P", "F", input_licence):
+        users_letter = input(message_to_display)
+        if two_options_validation(first_option, second_option, users_letter):
             break
         
-    input_licence = input_licence.capitalize()
-    return input_licence
+    users_letter = users_letter.capitalize()
+    return users_letter
 
 
 def legal_limit():
@@ -77,19 +78,6 @@ def legal_limit():
         limit = 0.05
 
     return limit
-
-
-def get_gender_type():
-    """
-    Get the gender type of user
-    """
-    while True:
-        input_gender = input("Enter your gender (M for male and F for female):\n")
-        if two_options_validation("M", "F", input_gender):
-            break
-
-    input_gender = input_gender.capitalize()
-    return input_gender
 
 
 def fluid_fraction_of_body():
@@ -129,9 +117,9 @@ def bac_calculation():
 
 welcome_screen()
 name = get_name()
-licence = get_licence_type()
+licence = letter_choice("Please enter your licence type (P for provisional and F for full):\n", "P", "F")
 legal_limit = legal_limit()
-gender = get_gender_type()
+gender = letter_choice("Enter your gender (M for male and F for female):\n", "M", "F")
 users_fluid_fraction = fluid_fraction_of_body()
 weight = number_validation("Please enter your weight in KG:\n")
 drinks = number_validation("How many drinks you took?\n")

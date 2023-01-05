@@ -105,17 +105,17 @@ def fluid_fraction_of_body():
     return fluid_fraction_of_body
 
 
-def body_weight():
+def number_validation(message_for_user):
     """
-    Get user's weight
+    Get amount of drinks taken
     """
     while True:
         try:
-            users_weight = float(input("Please enter your weight in KG:\n"))
+            users_number = float((input(message_for_user)))
             break
         except ValueError:
             print("Invalid value! Please use a numbers only!")
-    return users_weight
+    return users_number
 
 
 def bac_calculation():
@@ -123,7 +123,7 @@ def bac_calculation():
     BAC formula calculation
     """
     bac_formula = ((FRACTIONOFFLUID * drinks * milliliters * percentage * GRAVITYOFALCOHOL) / \
-        (weight * fluid_fraction * 1000)) - (METABOLISM * ingestion)
+        (weight * users_fluid_fraction * 1000)) - (METABOLISM * ingestion)
     return bac_formula
 
 
@@ -132,12 +132,12 @@ name = get_name()
 licence = get_licence_type()
 legal_limit = legal_limit()
 gender = get_gender_type()
-fluid_fraction = fluid_fraction_of_body()
-weight = body_weight()
-drinks = float((input("How many drinks you took?\n")))
-milliliters = float((input("Number of milliliters per drink?\n")))
-percentage = float(input("How strong they were? Input percentage of alcohol:\n"))
-ingestion = float((input("How many hours ago you have had a last drink?:\n")))
+users_fluid_fraction = fluid_fraction_of_body()
+weight = number_validation("Please enter your weight in KG:\n")
+drinks = number_validation("How many drinks you took?\n")
+milliliters = number_validation("Number of milliliters per drink?\n")
+percentage = number_validation("How strong they were? Input percentage of alcohol (do not use % sign):\n")
+ingestion = number_validation("How many hours ago you have had a last drink?:\n")
 bac = bac_calculation()
 
 # number of drink check

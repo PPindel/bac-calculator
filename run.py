@@ -1,5 +1,6 @@
 import os
 import pyfiglet
+import sys, time
 
 # constants:
 FRACTIONOFFLUID = 0.806
@@ -21,8 +22,35 @@ def welcome_screen():
     clear()
     print(pyfiglet.figlet_format("B A C\nCALCULATOR"))
     print("***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***\n")
-    input("Press enter to continue...\n")
+    sys.stdout.write("LOADING THE PROGRAM")
+    sys.stdout.flush()
+    slow_print("...........................................")
+    time.sleep(1)
     clear()
+
+
+def important_notice():
+    """
+    Notice for user
+    """
+    clear()
+    print("IMPORTANT NOTICE!")
+    print("This program is not accurate enough to calculate the exact blood alcohol")
+    print("content in your body. The obtained result is averaged and does not take")
+    print("into account many individual preferences.\n")
+    print("Also, please remember that the best practice is to never drink and drive.\n")
+    input("Press enter to continue...")
+    clear()
+
+
+def slow_print(text):
+    """
+    Slow printing text function
+    """
+    for letter in text:
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(.02)
 
 
 # user inputs:
@@ -33,6 +61,9 @@ def get_name():
     Get the name of the user
     """
     input_name = str(input("Please enter your name:\n"))
+    clear()
+    hello = f"Hi {input_name}, I need to ask you few questions to calculate your BAC...\n"
+    slow_print(hello)
     return input_name
 
 
@@ -127,31 +158,39 @@ def final_output(user_name, user_licence, user_weight, user_ingestion, the_bac, 
     """
     Final output
     """
-    print("*"*22)
-    print("* FINAL CALCULATION: *")
-    print("*"*80)
-    print("Name:", user_name)
-    print("Licence type:", user_licence)
-    print("Weight:", user_weight)
-    print("Hours from last drink:", user_ingestion)
-    print("Blood alcohol content:", the_bac.__round__(3))
-    print("Your legal limit:", the_legal_limit)
+    sys.stdout.write("CALCULATING")
+    sys.stdout.flush()
+    slow_print("." * 60)
+    time.sleep(1)
+    clear()
+    print("FINAL BAC CALCULATION:")
+    time.sleep(0.5)
+    print("*" * 80)
+    time.sleep(0.5)
+    print("* Name:", user_name)
+    print("* Licence type:", user_licence)
+    print("* Weight:", user_weight)
+    print("* Hours from last drink:", user_ingestion)
+    print("* Blood alcohol content:", the_bac.__round__(3))
+    print("* Your legal limit:", the_legal_limit)
 
     if the_bac > the_legal_limit:
-        print("Your blood alcohol content is over legal limit! You cannot drive!")
+        print("* Your blood alcohol content is over legal limit! You cannot drive!")
     else:
-        print("Your blood alcohol content is under legal limit! You can drive!")
-    print("*"*80)
+        print("* Your blood alcohol content is under legal limit! You can drive!")
+
+    print("*" * 80)
 
 
 def main():
     welcome_screen()
+    important_notice()
     name = get_name()
     licence = letter_choice("Please enter your licence type (P for provisional and F for full):\n", "P", "F")
     legal_limit = legal_limit_check(licence)
     gender = letter_choice("Enter your gender (M for male and F for female):\n", "M", "F")
     users_fluid_fraction = fluid_fraction_of_body(gender)
-    weight = number_validation("Please enter your weight in KG:\n")
+    weight = number_validation("Please enter your weight in KG (do not worry, we don't store this data):\n")
     drinks = number_validation("How many drinks you took?\n")
     drinks_checker(drinks)
     milliliters = number_validation("Number of milliliters per drink?\n")

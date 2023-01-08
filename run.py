@@ -114,47 +114,51 @@ def drinks_checker(drinks_number):
         quit()
 
 
-def bac_calculation():
+def bac_calculation(user_drinks, user_milliliters, user_percentage, user_weight, the_users_fluid_fraction, user_ingestion):
     """
     BAC formula calculation
     """
-    bac_result = ((FRACTIONOFFLUID * drinks * milliliters * percentage * GRAVITYOFALCOHOL) / \
-        (weight * users_fluid_fraction * 1000)) - (METABOLISM * ingestion)
+    bac_result = ((FRACTIONOFFLUID * user_drinks * user_milliliters * user_percentage * GRAVITYOFALCOHOL) / \
+        (user_weight * the_users_fluid_fraction * 1000)) - (METABOLISM * user_ingestion)
     return bac_result
 
 
-def final_output():
+def final_output(user_name, user_licence, user_weight, user_ingestion, the_bac, the_legal_limit):
     """
     Final output
     """
     print("*"*22)
     print("* FINAL CALCULATION: *")
     print("*"*80)
-    print("Name:", name)
-    print("Licence type:", licence)
-    print("Weight:", weight)
-    print("Hours from last drink:", ingestion)
-    print("Blood alcohol content:", bac.__round__(3))
-    print("Your legal limit:", legal_limit)
+    print("Name:", user_name)
+    print("Licence type:", user_licence)
+    print("Weight:", user_weight)
+    print("Hours from last drink:", user_ingestion)
+    print("Blood alcohol content:", the_bac.__round__(3))
+    print("Your legal limit:", the_legal_limit)
 
-    if bac > legal_limit:
+    if the_bac > the_legal_limit:
         print("Your blood alcohol content is over legal limit! You cannot drive!")
     else:
         print("Your blood alcohol content is under legal limit! You can drive!")
     print("*"*80)
 
 
-welcome_screen()
-name = get_name()
-licence = letter_choice("Please enter your licence type (P for provisional and F for full):\n", "P", "F")
-legal_limit = legal_limit_check(licence)
-gender = letter_choice("Enter your gender (M for male and F for female):\n", "M", "F")
-users_fluid_fraction = fluid_fraction_of_body(gender)
-weight = number_validation("Please enter your weight in KG:\n")
-drinks = number_validation("How many drinks you took?\n")
-drinks_checker(drinks)
-milliliters = number_validation("Number of milliliters per drink?\n")
-percentage = number_validation("How strong they were? Input percentage of alcohol (do not use % sign):\n")
-ingestion = number_validation("How many hours ago you have had a last drink?:\n")
-bac = bac_calculation()
-final_output()
+def main():
+    welcome_screen()
+    name = get_name()
+    licence = letter_choice("Please enter your licence type (P for provisional and F for full):\n", "P", "F")
+    legal_limit = legal_limit_check(licence)
+    gender = letter_choice("Enter your gender (M for male and F for female):\n", "M", "F")
+    users_fluid_fraction = fluid_fraction_of_body(gender)
+    weight = number_validation("Please enter your weight in KG:\n")
+    drinks = number_validation("How many drinks you took?\n")
+    drinks_checker(drinks)
+    milliliters = number_validation("Number of milliliters per drink?\n")
+    percentage = number_validation("How strong they were? Input percentage of alcohol (do not use % sign):\n")
+    ingestion = number_validation("How many hours ago you have had a last drink?:\n")
+    bac = bac_calculation(drinks, milliliters, percentage, weight, users_fluid_fraction, ingestion)
+    final_output(name, licence, weight, ingestion, bac, legal_limit)
+
+
+main()

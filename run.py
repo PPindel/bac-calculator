@@ -1,3 +1,4 @@
+# imports:
 import os
 import pyfiglet
 import sys, time
@@ -21,11 +22,14 @@ def welcome_screen():
     """
     clear()
     print(pyfiglet.figlet_format("B A C\nCALCULATOR"))
+    time.sleep(1)
     print("***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***\n")
+    print("***AND ANSWER THE QUESTION - CAN YOU LEGALLY DRIVE?***")
+    print("***BASED ON YOUR DRIVING LICENCE TYPE***")
     sys.stdout.write("LOADING THE PROGRAM")
     sys.stdout.flush()
     slow_print("...........................................")
-    time.sleep(1)
+    time.sleep(2)
     clear()
 
 
@@ -53,20 +57,6 @@ def slow_print(text):
         time.sleep(.02)
 
 
-# user inputs:
-
-
-def get_name():
-    """
-    Get the name of the user
-    """
-    input_name = str(input("Please enter your name:\n"))
-    clear()
-    hello = f"Hi {input_name}, I need to ask you few questions to calculate your BAC...\n"
-    slow_print(hello)
-    return input_name
-
-
 def two_options_validation(a, b, user_choice):
     """
     Function is checking if user selected one of two correct options
@@ -82,6 +72,20 @@ def two_options_validation(a, b, user_choice):
         return False
 
     return True
+
+
+# user inputs:
+
+
+def get_name():
+    """
+    Get the name of the user
+    """
+    input_name = str(input("Please enter your name:\n"))
+    clear()
+    hello = f"Hi {input_name}, I need to ask you few questions to calculate your BAC...\n"
+    slow_print(hello)
+    return input_name
 
 
 def letter_choice(message_to_display, first_option, second_option):
@@ -183,6 +187,9 @@ def final_output(user_name, user_licence, user_weight, user_ingestion, the_bac, 
 
 
 def main():
+    """
+    Main function - runs all program functions
+    """
     welcome_screen()
     important_notice()
     name = get_name()

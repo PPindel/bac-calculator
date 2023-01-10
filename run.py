@@ -1,7 +1,9 @@
 # imports:
 import os
 import pyfiglet
-import sys, time
+import time
+import sys
+from datetime import datetime
 
 # constants:
 FRACTIONOFFLUID = 0.806
@@ -82,6 +84,11 @@ def get_name():
     Get the name of the user
     """
     input_name = str(input("Please enter your name:\n"))
+
+    while not input_name.isalpha():
+        print("Invalid name! Please use letters only!")
+        input_name = str(input("Please enter your name:\n"))
+
     clear()
     hello = f"Hi {input_name}, I need to ask you few questions to calculate your BAC...\n"
     slow_print(hello)
@@ -168,9 +175,12 @@ def final_output(user_name, user_licence, user_weight, user_ingestion, the_bac, 
     time.sleep(1)
     clear()
     print("FINAL BAC CALCULATION:")
+    time_stamp = datetime.now()
+    print(time_stamp.strftime("%d/%m/%Y %H:%M:%S"))
     time.sleep(0.5)
     print("*" * 80)
     time.sleep(0.5)
+    print("*")
     print("* Name:", user_name)
     print("* Licence type:", user_licence)
     print("* Weight:", user_weight)
@@ -179,9 +189,9 @@ def final_output(user_name, user_licence, user_weight, user_ingestion, the_bac, 
     print("* Your legal limit:", the_legal_limit)
 
     if the_bac > the_legal_limit:
-        print("* Your blood alcohol content is over legal limit! You cannot drive!")
+        print("* Your blood alcohol content is over legal limit! You cannot drive!\n*")
     else:
-        print("* Your blood alcohol content is under legal limit! You can drive!")
+        print("* Your blood alcohol content is under legal limit! You can drive!\n*")
 
     print("*" * 80)
 

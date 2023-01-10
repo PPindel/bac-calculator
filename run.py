@@ -26,7 +26,7 @@ def welcome_screen():
     print(pyfiglet.figlet_format("B A C\nCALCULATOR"))
     time.sleep(1)
     print("***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***\n")
-    print("***AND ANSWER THE QUESTION - CAN YOU LEGALLY DRIVE?***")
+    print("***AND ANSWER THE QUESTION - CAN YOU LEGALLY DRIVE IN IRELAND?***")
     print("***BASED ON YOUR DRIVING LICENCE TYPE***")
     sys.stdout.write("LOADING THE PROGRAM")
     sys.stdout.flush()
@@ -147,13 +147,21 @@ def number_validation(message_for_user):
     return users_number
 
 
+def calculate_again(yes_or_no):
+    if yes_or_no == "Y":
+        main()
+    else:
+        quit()
+
+
 def drinks_checker(drinks_number):
     """
     Number of drinks check
     """
     if drinks_number <= 0:
         print("You are totally sober! Well done!")
-        quit()
+        check_again = letter_choice("Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")
+        calculate_again(check_again)
 
 
 def bac_calculation(user_drinks, user_milliliters, user_percentage, user_weight, the_users_fluid_fraction, user_ingestion):
@@ -181,12 +189,12 @@ def final_output(user_name, user_licence, user_weight, user_ingestion, the_bac, 
     print("*" * 80)
     time.sleep(0.5)
     print("*")
-    print("* Name:", user_name)
-    print("* Licence type:", user_licence)
-    print("* Weight:", user_weight)
-    print("* Hours from last drink:", user_ingestion)
-    print("* Blood alcohol content:", the_bac.__round__(3))
-    print("* Your legal limit:", the_legal_limit)
+    print(f"* Name: {user_name}")
+    print(f"* Licence type: {user_licence}")
+    print(f"* Weight: {user_weight} kg")
+    print(f"* Hours from last drink: {user_ingestion}")
+    print(f"* Blood alcohol content: {the_bac.__round__(3)}")
+    print(f"* Your legal limit: {the_legal_limit}")
 
     if the_bac > the_legal_limit:
         print("* Your blood alcohol content is over legal limit! You cannot drive!\n*")
@@ -215,6 +223,8 @@ def main():
     ingestion = number_validation("How many hours ago you have had a last drink?:\n")
     bac = bac_calculation(drinks, milliliters, percentage, weight, users_fluid_fraction, ingestion)
     final_output(name, licence, weight, ingestion, bac, legal_limit)
+    check_again = letter_choice("Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")
+    calculate_again(check_again)
 
 
 main()

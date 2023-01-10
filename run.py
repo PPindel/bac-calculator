@@ -41,10 +41,10 @@ def important_notice():
     """
     clear()
     print("IMPORTANT NOTICE!")
-    print("This program is not accurate enough to calculate the exact blood alcohol")
-    print("content in your body. The obtained result is averaged and does not take")
+    print("This program is not accurate enough to calculate the exact blood alcohol")  # noqa E501
+    print("content in your body. The obtained result is averaged and does not take")  # noqa E501
     print("into account many individual preferences.\n")
-    print("Also, please remember that the best practice is to never drink and drive.\n")
+    print("Also, please remember that the best practice is to never drink and drive.\n")  # noqa E501
     input("Press enter to continue...")
     clear()
 
@@ -67,7 +67,7 @@ def two_options_validation(a, b, user_choice):
         user_choice = user_choice.capitalize()
         if user_choice != a and user_choice != b:
             raise ValueError(
-                f"Wrong data - you entered {user_choice}. Please use {a} or {b} ONLY!"
+                f"Wrong data - you entered {user_choice}. Please use {a} or {b} ONLY!"  # noqa E501
             )
     except ValueError as e:
         print(f"ERROR {e}")
@@ -90,7 +90,7 @@ def get_name():
         input_name = str(input("Please enter your name:\n"))
 
     clear()
-    hello = f"Hi {input_name}, I need to ask you few questions to calculate your BAC...\n"
+    hello = f"Hi {input_name}, I need to ask you few questions to calculate your BAC...\n"  # noqa E501
     slow_print(hello)
     return input_name
 
@@ -104,7 +104,7 @@ def letter_choice(message_to_display, first_option, second_option):
         users_letter = input(message_to_display)
         if two_options_validation(first_option, second_option, users_letter):
             break
-        
+
     users_letter = users_letter.capitalize()
     return users_letter
 
@@ -130,7 +130,7 @@ def fluid_fraction_of_body(gender_type):
         fluid_fraction_of_user = 0.58
     elif gender_type == "F":
         fluid_fraction_of_user = 0.49
-    
+
     return fluid_fraction_of_user
 
 
@@ -160,20 +160,21 @@ def drinks_checker(drinks_number):
     """
     if drinks_number <= 0:
         print("You are totally sober! Well done!")
-        check_again = letter_choice("Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")
+        check_again = letter_choice(
+            "Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
         calculate_again(check_again)
 
 
-def bac_calculation(user_drinks, user_milliliters, user_percentage, user_weight, the_users_fluid_fraction, user_ingestion):
+def bac_calculation(user_drinks, user_milliliters, user_percentage, user_weight, the_users_fluid_fraction, user_ingestion):  # noqa E501
     """
     BAC formula calculation
     """
-    bac_result = ((FRACTIONOFFLUID * user_drinks * user_milliliters * user_percentage * GRAVITYOFALCOHOL) / \
-        (user_weight * the_users_fluid_fraction * 1000)) - (METABOLISM * user_ingestion)
+    bac_result = ((FRACTIONOFFLUID * user_drinks * user_milliliters * user_percentage * GRAVITYOFALCOHOL) /  # noqa E501
+                  (user_weight * the_users_fluid_fraction * 1000)) - (METABOLISM * user_ingestion)  # noqa E501
     return bac_result
 
 
-def final_output(user_name, user_licence, user_weight, user_ingestion, the_bac, the_legal_limit):
+def final_output(user_name, user_licence, user_weight, user_ingestion, the_bac, the_legal_limit):  # noqa E501
     """
     Final output
     """
@@ -197,9 +198,9 @@ def final_output(user_name, user_licence, user_weight, user_ingestion, the_bac, 
     print(f"* Your legal limit: {the_legal_limit}")
 
     if the_bac > the_legal_limit:
-        print("* Your blood alcohol content is over legal limit! You cannot drive!\n*")
+        print("* Your blood alcohol content is over legal limit! You cannot drive!\n*")  # noqa E501
     else:
-        print("* Your blood alcohol content is under legal limit! You can drive!\n*")
+        print("* Your blood alcohol content is under legal limit! You can drive!\n*")  # noqa E501
 
     print("*" * 80)
 
@@ -211,19 +212,26 @@ def main():
     welcome_screen()
     important_notice()
     name = get_name()
-    licence = letter_choice("Please enter your licence type (P for provisional and F for full):\n", "P", "F")
+    licence = letter_choice(
+        "Please enter your licence type (P for provisional and F for full):\n", "P", "F")  # noqa E501
     legal_limit = legal_limit_check(licence)
-    gender = letter_choice("Enter your gender (M for male and F for female):\n", "M", "F")
+    gender = letter_choice(
+        "Enter your gender (M for male and F for female):\n", "M", "F")
     users_fluid_fraction = fluid_fraction_of_body(gender)
-    weight = number_validation("Please enter your weight in KG (do not worry, we don't store this data):\n")
+    weight = number_validation(
+        "Please enter your weight in KG (do not worry, we don't store this data):\n")  # noqa E501
     drinks = number_validation("How many drinks you took?\n")
     drinks_checker(drinks)
     milliliters = number_validation("Number of milliliters per drink?\n")
-    percentage = number_validation("How strong they were? Input percentage of alcohol (do not use % sign):\n")
-    ingestion = number_validation("How many hours ago you have had a last drink?:\n")
-    bac = bac_calculation(drinks, milliliters, percentage, weight, users_fluid_fraction, ingestion)
+    percentage = number_validation(
+        "How strong they were? Input percentage of alcohol (do not use % sign):\n")  # noqa E501
+    ingestion = number_validation(
+        "How many hours ago you have had a last drink?:\n")
+    bac = bac_calculation(drinks, milliliters, percentage,
+                          weight, users_fluid_fraction, ingestion)
     final_output(name, licence, weight, ingestion, bac, legal_limit)
-    check_again = letter_choice("Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")
+    check_again = letter_choice(
+        "Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
     calculate_again(check_again)
 
 

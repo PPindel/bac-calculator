@@ -197,6 +197,8 @@ def get_drinks():
             print("Number of drinks cannot be negative!")
         else:
             break
+    if users_drinks > 500:
+        print("That's quite a lot...")
     return users_drinks
 
 
@@ -231,6 +233,22 @@ def get_percentage():
         else:
             print("This value must be above 0 and less than 100")
     return drinks_percentage
+
+
+def get_hours():
+    """
+    Gets number of hours since last drink was consumed
+    """
+    while True:
+        users_hours = number_validation("How many hours ago you have had a last drink?:\n")  # noqa E501
+        if users_hours < 0:
+            print("I can't allocate the negative value on a timeline...")
+        else:
+            break
+    if users_hours > 240:
+        print("If you still feel the effects of intoxication after 10 days...")
+        print("I really suggest to contact a doctor. But lets check anyway...")
+    return users_hours
 
 
 def bac_calculation(user_drinks, user_milliliters, user_percentage, user_weight, the_users_fluid_fraction, user_ingestion):  # noqa E501
@@ -296,8 +314,7 @@ def main():
     drinks_checker(drinks)
     milliliters = get_volume(drinks)
     percentage = get_percentage()
-    ingestion = number_validation(
-        "How many hours ago you have had a last drink?:\n")
+    ingestion = get_hours()
     bac = bac_calculation(drinks, milliliters, percentage,
                           weight, users_fluid_fraction, ingestion)
     final_output(name, licence, weight, ingestion, bac, legal_limit)

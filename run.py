@@ -165,7 +165,7 @@ def drinks_checker(drinks_number):
     Number of drinks check
     """
     if drinks_number == 0:
-        print("You are totally sober! Well done!")
+        print("No drinks no problem! Well done!")
         check_again = letter_choice(
             "Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
         calculate_again(check_again)
@@ -179,6 +179,9 @@ def weight_check():
         users_weight = number_validation("Please enter your weight in KG:\n")
         if users_weight < 1:
             print("You weight cannot be 0 or less!")
+        elif users_weight > 635:
+            print("The heaviest person ever alived had 635kg...")
+            print("You should contact Guinness World Records!")
         else:
             break
     return users_weight
@@ -195,6 +198,39 @@ def get_drinks():
         else:
             break
     return users_drinks
+
+
+def get_volume(amount):
+    """
+    Gets size of the drinks in mililiters
+    """
+    while True:
+        volume_of_drink = number_validation("Number of milliliters per drink?\n")  # noqa E501
+        if volume_of_drink < 1:
+            print("This value must be above 0!")
+        else:
+            break
+    if amount * volume_of_drink > 5000:
+        print("Please remember - drinking so much of any liquid is not healthy...")  # noqa E501
+    return volume_of_drink
+
+
+def get_percentage():
+    """
+    Gets alcohol content of drinks taken
+    """
+    while True:
+        drinks_percentage = number_validation("How strong they were? Input percentage of alcohol (do not use % sign):\n")  # noqa E501)
+        if 0 < drinks_percentage <= 100:
+            break
+        elif drinks_percentage == 0:
+            print("No percentage no problem! Well done!")
+            check_again = letter_choice(
+            "Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
+            calculate_again(check_again)
+        else:
+            print("This value must be above 0 and less than 100")
+    return drinks_percentage
 
 
 def bac_calculation(user_drinks, user_milliliters, user_percentage, user_weight, the_users_fluid_fraction, user_ingestion):  # noqa E501
@@ -258,9 +294,8 @@ def main():
     weight = weight_check()
     drinks = get_drinks()
     drinks_checker(drinks)
-    milliliters = number_validation("Number of milliliters per drink?\n")
-    percentage = number_validation(
-        "How strong they were? Input percentage of alcohol (do not use % sign):\n")  # noqa E501
+    milliliters = get_volume(drinks)
+    percentage = get_percentage()
     ingestion = number_validation(
         "How many hours ago you have had a last drink?:\n")
     bac = bac_calculation(drinks, milliliters, percentage,

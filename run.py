@@ -83,11 +83,13 @@ def get_name():
     """
     Get the name of the user
     """
-    input_name = str(input("Please enter your name:\n"))
+    input_name = str(input("Please enter your name (use only letters, no spaces between):\n"))  # noqa E501
+    input_name = input_name.strip()
 
     while not input_name.isalpha():
         print("Invalid name! Please use letters only!")
-        input_name = str(input("Please enter your name:\n"))
+        input_name = str(input("Please enter your name (use only letters, no spaces between):\n"))  # noqa E501
+        input_name = input_name.strip()
 
     clear()
     hello = f"Hi {input_name}, I need to ask you few questions to calculate your BAC...\n"  # noqa E501
@@ -102,6 +104,7 @@ def letter_choice(message_to_display, first_option, second_option):
     """
     while True:
         users_letter = input(message_to_display)
+        users_letter = users_letter.strip()
         if two_options_validation(first_option, second_option, users_letter):
             break
 
@@ -165,6 +168,19 @@ def drinks_checker(drinks_number):
         calculate_again(check_again)
 
 
+def weight_check():
+    """
+    Checking if weight is above 0 to avoid divide by 0 error
+    """
+    while True:
+        users_weight = number_validation("Please enter your weight in KG:\n")
+        if users_weight < 1:
+            print("You weight cannot be 0 or less!")
+        else:
+            break
+    return users_weight
+
+
 def bac_calculation(user_drinks, user_milliliters, user_percentage, user_weight, the_users_fluid_fraction, user_ingestion):  # noqa E501
     """
     BAC formula calculation
@@ -191,7 +207,12 @@ def final_output(user_name, user_licence, user_weight, user_ingestion, the_bac, 
     time.sleep(0.5)
     print("*")
     print(f"* Name: {user_name}")
-    print(f"* Licence type: {user_licence}")
+
+    if user_licence == "F":
+        print("* Licence type: Full")
+    else:
+        print("* Licence type: Provisional")
+
     print(f"* Weight: {user_weight} kg")
     print(f"* Hours from last drink: {user_ingestion}")
     print(f"* Blood alcohol content: {the_bac.__round__(3)}")
@@ -218,8 +239,7 @@ def main():
     gender = letter_choice(
         "Enter your gender (M for male and F for female):\n", "M", "F")
     users_fluid_fraction = fluid_fraction_of_body(gender)
-    weight = number_validation(
-        "Please enter your weight in KG (do not worry, we don't store this data):\n")  # noqa E501
+    weight = weight_check()
     drinks = number_validation("How many drinks you took?\n")
     drinks_checker(drinks)
     milliliters = number_validation("Number of milliliters per drink?\n")

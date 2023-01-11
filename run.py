@@ -83,8 +83,13 @@ def get_name():
     """
     Get the name of the user
     """
-    input_name = str(input("Please enter your name (use only letters, no spaces between):\n"))  # noqa E501
-    input_name = input_name.strip()
+    while True:
+        input_name = str(input("Please enter your name (use only letters, no spaces between):\n"))  # noqa E501
+        input_name = input_name.strip()
+        if len(input_name) > 20:
+            print("Sorry, your name is too long. Please use any other name up to 20 letters.")  # noqa E501
+        else:
+            break
 
     while not input_name.isalpha():
         print("Invalid name! Please use letters only!")
@@ -92,7 +97,8 @@ def get_name():
         input_name = input_name.strip()
 
     clear()
-    hello = f"Hi {input_name}, I need to ask you few questions to calculate your BAC...\n"  # noqa E501
+    input_name = input_name.capitalize()
+    hello = f"Hi {input_name}, I need to ask you few questions to calculate your BAC.\n"  # noqa E501
     slow_print(hello)
     return input_name
 
@@ -195,6 +201,8 @@ def get_drinks():
         users_drinks = number_validation("How many drinks you took?\n")
         if users_drinks < 0:
             print("Number of drinks cannot be negative!")
+        elif users_drinks > 10000:
+            print("Sorry, that's way too much to calculate.")
         else:
             break
     if users_drinks > 500:
@@ -210,6 +218,8 @@ def get_volume(amount):
         volume_of_drink = number_validation("Number of milliliters per drink?\n")  # noqa E501
         if volume_of_drink < 1:
             print("This value must be above 0!")
+        elif volume_of_drink > 10000:
+            print("Sorry, that's way too much to calculate.")
         else:
             break
     if amount * volume_of_drink > 5000:
@@ -260,7 +270,7 @@ def bac_calculation(user_drinks, user_milliliters, user_percentage, user_weight,
     return bac_result
 
 
-def final_output(user_name, user_licence, user_weight, user_ingestion, the_bac, the_legal_limit):  # noqa E501
+def final_output(user_name, user_licence, user_weight, drinks_amount, drinks_mililiters, drinks_percentage, user_ingestion, the_bac, the_legal_limit):  # noqa E501
     """
     Final output
     """
@@ -284,6 +294,7 @@ def final_output(user_name, user_licence, user_weight, user_ingestion, the_bac, 
         print("* Licence type: Provisional")
 
     print(f"* Weight: {user_weight} kg")
+    print(f"* Consumed {(drinks_amount * drinks_mililiters) / 1000} litres of {drinks_percentage}% alcohol")  # noqa E501
     print(f"* Hours from last drink: {user_ingestion}")
     print(f"* Blood alcohol content: {the_bac.__round__(3)}")
     print(f"* Your legal limit: {the_legal_limit}")
@@ -317,7 +328,7 @@ def main():
     ingestion = get_hours()
     bac = bac_calculation(drinks, milliliters, percentage,
                           weight, users_fluid_fraction, ingestion)
-    final_output(name, licence, weight, ingestion, bac, legal_limit)
+    final_output(name, licence, weight, drinks, milliliters, percentage, ingestion, bac, legal_limit)  # noqa E501
     check_again = letter_choice(
         "Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
     calculate_again(check_again)

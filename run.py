@@ -151,6 +151,9 @@ def number_validation(message_for_user):
 
 
 def calculate_again(yes_or_no):
+    """
+    Checks if user answered yes or no
+    """
     if yes_or_no == "Y":
         main()
     else:
@@ -161,7 +164,7 @@ def drinks_checker(drinks_number):
     """
     Number of drinks check
     """
-    if drinks_number <= 0:
+    if drinks_number == 0:
         print("You are totally sober! Well done!")
         check_again = letter_choice(
             "Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
@@ -179,6 +182,19 @@ def weight_check():
         else:
             break
     return users_weight
+
+
+def get_drinks():
+    """
+    Gets number of drinks
+    """
+    while True:
+        users_drinks = number_validation("How many drinks you took?\n")
+        if users_drinks < 0:
+            print("Number of drinks cannot be negative!")
+        else:
+            break
+    return users_drinks
 
 
 def bac_calculation(user_drinks, user_milliliters, user_percentage, user_weight, the_users_fluid_fraction, user_ingestion):  # noqa E501
@@ -240,7 +256,7 @@ def main():
         "Enter your gender (M for male and F for female):\n", "M", "F")
     users_fluid_fraction = fluid_fraction_of_body(gender)
     weight = weight_check()
-    drinks = number_validation("How many drinks you took?\n")
+    drinks = get_drinks()
     drinks_checker(drinks)
     milliliters = number_validation("Number of milliliters per drink?\n")
     percentage = number_validation(

@@ -26,12 +26,12 @@ def welcome_screen():
     clear()
     print(pyfiglet.figlet_format("B A C\nCALCULATOR"))
     time.sleep(1)
-    print(Fore.RED + "***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***\n" + Fore.WHITE)
-    print("***AND ANSWER THE QUESTION - CAN YOU LEGALLY DRIVE IN IRELAND?***")
-    print("***BASED ON YOUR DRIVING LICENCE TYPE***")
-    sys.stdout.write("LOADING THE PROGRAM")
+    print(Fore.RED + "***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***\n" + Fore.WHITE)  # noqa E501
+    print(Fore.GREEN + "***AND ANSWER THE QUESTION - CAN YOU LEGALLY DRIVE IN IRELAND?***\n" + Fore.WHITE)  # noqa E501
+    print("***BASED ON YOUR DRIVING LICENCE TYPE***\n")
+    sys.stdout.write(Fore.YELLOW + "LOADING THE PROGRAM")
     sys.stdout.flush()
-    slow_print("...........................................")
+    slow_print("..........................................." + Fore.WHITE)
     time.sleep(2)
     clear()
 
@@ -41,11 +41,11 @@ def important_notice():
     Notice for user
     """
     clear()
-    print("IMPORTANT NOTICE!")
+    print(Fore.RED + "IMPORTANT NOTICE!" + Fore.YELLOW)
     print("This program is not accurate enough to calculate the exact blood alcohol")  # noqa E501
     print("content in your body. The obtained result is averaged and does not take")  # noqa E501
     print("into account many individual preferences.\n")
-    print("Also, please remember that the best practice is to never drink and drive.\n")  # noqa E501
+    print("Also, please remember that the best practice is to never drink and drive.\n" + Fore.WHITE)  # noqa E501
     input("Press enter to continue...")
     clear()
 
@@ -68,7 +68,7 @@ def two_options_validation(a, b, user_choice):
         user_choice = user_choice.capitalize()
         if user_choice != a and user_choice != b:
             raise ValueError(
-                f"Wrong data - you entered {user_choice}. Please use {a} or {b} ONLY!"  # noqa E501
+                Fore.RED + f"Wrong data - you entered {user_choice}. Please use {a} or {b} ONLY!" + Fore.WHITE  # noqa E501
             )
     except ValueError as e:
         print(f"ERROR {e}")
@@ -88,12 +88,12 @@ def get_name():
         input_name = str(input("Please enter your name (use only letters, no spaces between):\n"))  # noqa E501
         input_name = input_name.strip()
         if len(input_name) > 20:
-            print("Sorry, your name is too long. Please use any other name up to 20 letters.")  # noqa E501
+            print(Fore.RED + "Sorry, your name is too long. Please use any other name up to 20 letters." + Fore.WHITE)  # noqa E501
         else:
             break
 
     while not input_name.isalpha():
-        print("Invalid name! Please use letters only!")
+        print(Fore.RED + "Invalid name! Please use letters only!" + Fore.WHITE)
         input_name = str(input("Please enter your name (use only letters, no spaces between):\n"))  # noqa E501
         input_name = input_name.strip()
 
@@ -152,7 +152,7 @@ def number_validation(message_for_user):
             users_number = float((input(message_for_user)))
             break
         except ValueError:
-            print("Invalid value! Please use a numbers only!")
+            print(Fore.RED + "Invalid value! Please use a numbers only!" + Fore.WHITE)  # noqa E501
     users_number = users_number.__round__(3)
     return users_number
 
@@ -172,7 +172,7 @@ def drinks_checker(drinks_number):
     Number of drinks check
     """
     if drinks_number == 0:
-        print("No drinks no problem! Well done!")
+        print(Fore.GREEN + "No drinks no problem! Well done!" + Fore.WHITE)
         check_again = letter_choice(
             "Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
         calculate_again(check_again)
@@ -185,10 +185,10 @@ def weight_check():
     while True:
         users_weight = number_validation("Please enter your weight in KG:\n")
         if users_weight < 20:
-            print("Your weight must be at least 20kg to proceed.")
+            print(Fore.RED + "Your weight must be at least 20kg to proceed." + Fore.WHITE)  # noqa E501
         elif users_weight > 635:
-            print("The heaviest person ever alived had 635kg...")
-            print("You should contact Guinness World Records!")
+            print(Fore.RED + "The heaviest person ever alived had 635kg..." + Fore.WHITE)  # noqa E501
+            print(Fore.YELLOW + "You should contact Guinness World Records!" + Fore.WHITE)  # noqa E501
         else:
             break
     return users_weight
@@ -201,13 +201,13 @@ def get_drinks():
     while True:
         users_drinks = number_validation("How many drinks you took?\n")
         if users_drinks < 0:
-            print("Number of drinks cannot be negative!")
+            print(Fore.RED + "Number of drinks cannot be negative!" + Fore.WHITE)  # noqa E501
         elif users_drinks > 10000:
-            print("Sorry, that's way too much to calculate.")
+            print(Fore.RED + "Sorry, that's way too much to calculate." + Fore.WHITE)  # noqa E501
         else:
             break
     if users_drinks > 500:
-        print("That's quite a lot...")
+        print(Fore.YELLOW + "That's quite a lot..." + Fore.WHITE)
     return users_drinks
 
 
@@ -218,13 +218,13 @@ def get_volume(amount):
     while True:
         volume_of_drink = number_validation("Number of milliliters per drink?\n")  # noqa E501
         if volume_of_drink < 1:
-            print("Sorry, 1ml is the minimum value to start the calculation")
+            print(Fore.RED + "Sorry, 1ml is the minimum value to start the calculation" + Fore.WHITE)  # noqa E501
         elif volume_of_drink > 10000:
-            print("Sorry, that's way too much to calculate.")
+            print(Fore.RED + "Sorry, that's way too much to calculate." + Fore.WHITE)  # noqa E501
         else:
             break
     if amount * volume_of_drink > 5000:
-        print("Please remember - drinking so much of any liquid is not healthy...")  # noqa E501
+        print(Fore.YELLOW + "Please remember - drinking so much of any liquid is not healthy..." + Fore.WHITE)  # noqa E501
     return volume_of_drink
 
 
@@ -237,12 +237,13 @@ def get_percentage():
         if 0 < drinks_percentage <= 100:
             break
         elif drinks_percentage == 0:
-            print("No percentage no problem! Well done!")
+            print(Fore.GREEN + "No percentage no problem! Well done!" + Fore.WHITE)  # noqa E501)
+        if 0 < drinks_percentage <= 100:
             check_again = letter_choice(
             "Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
             calculate_again(check_again)
         else:
-            print("This value must be above 0 and less than 100")
+            print(Fore.RED + "This value must be above 0 and less than 100" + Fore.WHITE)  # noqa E501
     return drinks_percentage
 
 
@@ -253,10 +254,10 @@ def get_hours():
     while True:
         users_hours = number_validation("How many hours ago you have had a last drink?:\n")  # noqa E501
         if users_hours < 0:
-            print("I can't allocate the negative value on a timeline...")
+            print(Fore.RED + "I can't allocate the negative value on a timeline..." + Fore.WHITE)  # noqa E501
         elif users_hours > 240:
-            print("If you still feel the effects of intoxication after 10 days...")  # noqa E501
-            print("I really suggest to contact a doctor.")
+            print(Fore.RED + "If you still feel the effects of intoxication after 10 days..." + Fore.WHITE)  # noqa E501
+            print(Fore.YELLOW + "I really suggest to contact a doctor." + Fore.WHITE)  # noqa E501
         else:
             break
     return users_hours
@@ -283,11 +284,11 @@ def final_output(user_name, user_licence, user_weight, drinks_amount, drinks_mil
     slow_print("." * 60)
     time.sleep(1)
     clear()
-    print("FINAL BAC CALCULATION:")
+    print(Fore.YELLOW + "FINAL BAC CALCULATION:" + Fore.WHITE)
     time_stamp = datetime.now()
-    print(time_stamp.strftime("%d/%m/%Y %H:%M:%S"))
+    print(Fore.GREEN + time_stamp.strftime("%d/%m/%Y %H:%M:%S")+ Fore.WHITE)  # noqa E501
     time.sleep(0.5)
-    print("*" * 80)
+    print(Fore.BLUE + "*" * 80 + Fore.WHITE)
     time.sleep(0.5)
     print("*")
     print(f"* Name: {user_name}")
@@ -298,17 +299,17 @@ def final_output(user_name, user_licence, user_weight, drinks_amount, drinks_mil
         print("* Licence type: Provisional")
 
     print(f"* Weight: {user_weight.__round__(3)} kg")
-    print(f"* Consumed {((drinks_amount * drinks_mililiters) / 1000).__round__(3)} litres of {drinks_percentage.__round__(3)}% alcohol")  # noqa E501
+    print(f"* Consumed {((drinks_amount * drinks_mililiters) / 1000).__round__(3)} litre of {drinks_percentage.__round__(3)}% alcohol")  # noqa E501
     print(f"* Hours from last drink: {user_ingestion.__round__(3)}")
     print(f"* Blood alcohol content: {the_bac.__round__(3)}")
     print(f"* Your legal limit: {the_legal_limit}")
 
     if the_bac > the_legal_limit:
-        print("* Your blood alcohol content is over legal limit! You cannot drive!\n*")  # noqa E501
+        print(Fore.RED + "* Your blood alcohol content is over legal limit! You cannot drive!" + Fore.WHITE + "\n*")  # noqa E501
     else:
-        print("* Your blood alcohol content is under legal limit! You can drive!\n*")  # noqa E501
+        print(Fore.GREEN + "* Your blood alcohol content is under legal limit! You can drive!" + Fore.WHITE + "\n*")  # noqa E501
 
-    print("*" * 80)
+    print(Fore.BLUE + "*" * 80 + Fore.WHITE)
 
 
 def main():

@@ -3,6 +3,7 @@ import os
 import pyfiglet
 import time
 import sys
+from colorama import Fore
 from datetime import datetime
 
 # constants:
@@ -25,7 +26,7 @@ def welcome_screen():
     clear()
     print(pyfiglet.figlet_format("B A C\nCALCULATOR"))
     time.sleep(1)
-    print("***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***\n")
+    print(Fore.RED + "***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***\n" + Fore.WHITE)
     print("***AND ANSWER THE QUESTION - CAN YOU LEGALLY DRIVE IN IRELAND?***")
     print("***BASED ON YOUR DRIVING LICENCE TYPE***")
     sys.stdout.write("LOADING THE PROGRAM")
@@ -122,7 +123,6 @@ def legal_limit_check(licence_type):
     """
     Function defines legal limit of BAC based on licence type
     """
-    limit = 0
     if licence_type == "P":
         limit = 0.02
     elif licence_type == "F":
@@ -153,6 +153,7 @@ def number_validation(message_for_user):
             break
         except ValueError:
             print("Invalid value! Please use a numbers only!")
+    users_number = users_number.__round__(3)
     return users_number
 
 
@@ -183,8 +184,8 @@ def weight_check():
     """
     while True:
         users_weight = number_validation("Please enter your weight in KG:\n")
-        if users_weight < 1:
-            print("You weight cannot be 0 or less!")
+        if users_weight < 20:
+            print("Your weight must be at least 20kg to proceed.")
         elif users_weight > 635:
             print("The heaviest person ever alived had 635kg...")
             print("You should contact Guinness World Records!")
@@ -217,7 +218,7 @@ def get_volume(amount):
     while True:
         volume_of_drink = number_validation("Number of milliliters per drink?\n")  # noqa E501
         if volume_of_drink < 1:
-            print("This value must be above 0!")
+            print("Sorry, 1ml is the minimum value to start the calculation")
         elif volume_of_drink > 10000:
             print("Sorry, that's way too much to calculate.")
         else:
@@ -253,11 +254,11 @@ def get_hours():
         users_hours = number_validation("How many hours ago you have had a last drink?:\n")  # noqa E501
         if users_hours < 0:
             print("I can't allocate the negative value on a timeline...")
+        elif users_hours > 240:
+            print("If you still feel the effects of intoxication after 10 days...")  # noqa E501
+            print("I really suggest to contact a doctor.")
         else:
             break
-    if users_hours > 240:
-        print("If you still feel the effects of intoxication after 10 days...")
-        print("I really suggest to contact a doctor. But lets check anyway...")
     return users_hours
 
 
@@ -267,6 +268,9 @@ def bac_calculation(user_drinks, user_milliliters, user_percentage, user_weight,
     """
     bac_result = ((FRACTIONOFFLUID * user_drinks * user_milliliters * user_percentage * GRAVITYOFALCOHOL) /  # noqa E501
                   (user_weight * the_users_fluid_fraction * 1000)) - (METABOLISM * user_ingestion)  # noqa E501
+
+    if bac_result < 0:
+        bac_result = 0
     return bac_result
 
 
@@ -293,9 +297,9 @@ def final_output(user_name, user_licence, user_weight, drinks_amount, drinks_mil
     else:
         print("* Licence type: Provisional")
 
-    print(f"* Weight: {user_weight} kg")
-    print(f"* Consumed {(drinks_amount * drinks_mililiters) / 1000} litres of {drinks_percentage}% alcohol")  # noqa E501
-    print(f"* Hours from last drink: {user_ingestion}")
+    print(f"* Weight: {user_weight.__round__(3)} kg")
+    print(f"* Consumed {((drinks_amount * drinks_mililiters) / 1000).__round__(3)} litres of {drinks_percentage.__round__(3)}% alcohol")  # noqa E501
+    print(f"* Hours from last drink: {user_ingestion.__round__(3)}")
     print(f"* Blood alcohol content: {the_bac.__round__(3)}")
     print(f"* Your legal limit: {the_legal_limit}")
 

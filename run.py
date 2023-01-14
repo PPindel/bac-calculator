@@ -13,7 +13,7 @@ SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ]
+]
 
 CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
@@ -42,6 +42,7 @@ class BAC:
         self.drinks_percentage = 0
         self.users_hours = 0
         self.bac_result = 0
+        self.time_stamp = 0
 
     def legal_limit_check(self):
         """
@@ -161,8 +162,8 @@ class BAC:
         time.sleep(1)
         clear()
         print(Fore.YELLOW + "FINAL BAC CALCULATION:" + Fore.WHITE)
-        time_stamp = datetime.now()
-        print(Fore.GREEN + time_stamp.strftime("%d/%m/%Y %H:%M:%S") + Fore.WHITE)  # noqa E501
+        self.time_stamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        print(Fore.GREEN + self.time_stamp + Fore.WHITE)  # noqa E501
         time.sleep(0.5)
         print(Fore.BLUE + "*" * 80 + Fore.WHITE)
         time.sleep(0.5)
@@ -320,6 +321,17 @@ def calculate_again(yes_or_no):
         quit()
 
 
+def update_worksheet(data, worksheet):
+    """
+    Receives a list of values to be inserted into a worksheet
+    Update the relevant worksheet with the data provided
+    """
+    print(Fore.YELLOW + "Adding your result to the records...\n" + Fore.WHITE)
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(data)
+    print(Fore. GREEN + "Updated successfully\n" + Fore.WHITE)
+
+
 def main():
     """
     Main function - runs all program functions
@@ -342,8 +354,22 @@ def main():
     bac_user.get_hours()
     bac_user.bac_calculation()
     bac_user.final_output()
+
+    save_the_result = letter_choice("Do you wish to save your result in our database?  Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
+    if save_the_result == "Y":
+        the_result = [bac_user.user, bac_user.bac_result.__round__(3), bac_user.time_stamp]  # noqa E501
+        update_worksheet(the_result, "bac")
+
+    view_results = letter_choice("Would you like to check last 3 saved results?  Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
+    if view_results == "Y":
+        print()
+        records = SHEET.worksheet("bac").get_all_values()
+        for i in range(-3, 0):
+            print("Name: " + Fore.GREEN + f"{records[i][0]}" + Fore.MAGENTA + " ** " + Fore.WHITE + "blood alcohol content: " + Fore.RED + f"{records[i][1]}"   # noqa E501
+            + Fore.MAGENTA + " ** " + Fore.WHITE + "saved on: " + Fore.YELLOW + f"{records[i][2]}" + Fore.WHITE)  # noqa E501
+
     check_again = letter_choice(
-        "Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
+        "\nWould you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
     calculate_again(check_again)
 
 

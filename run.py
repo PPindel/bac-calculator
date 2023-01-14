@@ -167,7 +167,6 @@ class BAC:
         time.sleep(0.5)
         print(Fore.BLUE + "*" * 80 + Fore.WHITE)
         time.sleep(0.5)
-        print("*")
         print(f"* Name: {self.user}")
 
         if self.licence_type == "F":
@@ -186,9 +185,9 @@ class BAC:
         print(f"* Your legal limit: {self.limit}")
 
         if self.bac_result > self.limit:
-            print("* " + Fore.RED + "Your blood alcohol content is over legal limit! You cannot drive!" + Fore.WHITE + "\n*")  # noqa E501
+            print("* " + Fore.RED + "Your blood alcohol content is over legal limit! You cannot drive!" + Fore.WHITE)  # noqa E501
         else:
-            print("* " + Fore.GREEN + "Your blood alcohol content is under legal limit! You can drive!" + Fore.WHITE + "\n*")  # noqa E501
+            print("* " + Fore.GREEN + "Your blood alcohol content is under legal limit! You can drive!" + Fore.WHITE)  # noqa E501
 
         print(Fore.BLUE + "*" * 80 + Fore.WHITE)
 
@@ -355,12 +354,12 @@ def main():
     bac_user.bac_calculation()
     bac_user.final_output()
 
-    save_the_result = letter_choice("Do you wish to save your result in our database?  Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
+    save_the_result = letter_choice("Do you wish to save your result in our database? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
     if save_the_result == "Y":
         the_result = [bac_user.user, bac_user.bac_result.__round__(3), bac_user.time_stamp]  # noqa E501
         update_worksheet(the_result, "bac")
 
-    view_results = letter_choice("Would you like to check last 3 saved results?  Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
+    view_results = letter_choice("Would you like to check last 3 saved results? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
     if view_results == "Y":
         print()
         records = SHEET.worksheet("bac").get_all_values()

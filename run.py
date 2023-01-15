@@ -325,7 +325,7 @@ def update_worksheet(data, worksheet):
     Receives a list of values to be inserted into a worksheet
     Update the relevant worksheet with the data provided
     """
-    print(Fore.YELLOW + "Adding your result to the records...\n" + Fore.WHITE)
+    print(Fore.YELLOW + "Adding your result to the records..." + Fore.WHITE)
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
     print(Fore. GREEN + "Updated successfully\n" + Fore.WHITE)
@@ -364,7 +364,7 @@ def main():
         print()
         records = SHEET.worksheet("bac").get_all_values()
         for i in range(-3, 0):
-            print("Name: " + Fore.GREEN + f"{records[i][0]}" + Fore.MAGENTA + " ** " + Fore.WHITE + "blood alcohol content: " + Fore.RED + f"{records[i][1]}"   # noqa E501
+            print("Name: " + Fore.GREEN + f"{records[i][0]}" + Fore.MAGENTA + " ** " + Fore.WHITE + "BAC: " + Fore.RED + f"{records[i][1]}"   # noqa E501
             + Fore.MAGENTA + " ** " + Fore.WHITE + "saved on: " + Fore.YELLOW + f"{records[i][2]}" + Fore.WHITE)  # noqa E501
 
     check_again = letter_choice(

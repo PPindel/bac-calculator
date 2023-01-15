@@ -46,7 +46,7 @@ class BAC:
 
     def legal_limit_check(self):
         """
-        Function defines legal limit of BAC based on licence type
+        Function defines the legal limit of BAC based on the license type
         """
         if self.licence_type == "P":
             self.limit = 0.02
@@ -55,7 +55,7 @@ class BAC:
 
     def fluid_fraction_of_body(self):
         """
-        Function defines fluid fraction of body based on gender
+        Function defines the fluid fraction of the body based on gender
         """
         if self.gender == "M":
             self.fluid_fraction_of_user = 0.58
@@ -64,31 +64,31 @@ class BAC:
 
     def weight_check(self):
         """
-        Checking if weight is above 0 to avoid divide by 0 error
+        Checking if the weight is above 0 to avoid the divide by 0 error
         """
         while True:
             self.weight = number_validation("Please enter your weight in KG:\n")  # noqa E501
             if self.weight < 20:
                 print(Fore.RED + "Your weight must be at least 20kg to proceed." + Fore.WHITE)  # noqa E501
             elif self.weight > 635:
-                print(Fore.RED + "The heaviest person ever alived had 635kg..." + Fore.WHITE)  # noqa E501
-                print(Fore.YELLOW + "You should contact Guinness World Records!" + Fore.WHITE)  # noqa E501
+                print(Fore.RED + "The heaviest person ever lived had 635kg..." + Fore.WHITE)  # noqa E501
+                print(Fore.YELLOW + "You should contact the Guinness World Records!" + Fore.WHITE)  # noqa E501
             else:
                 break
 
     def get_drinks(self):
         """
-        Gets number of drinks
+        Gets the number of drinks
         """
         while True:
-            self.users_drinks = number_validation("How many drinks you took?\n")  # noqa E501
+            self.users_drinks = number_validation("How many drinks did you take?\n")  # noqa E501
             if self.users_drinks == 0:
                 print(Fore.GREEN + "No drinks no problem! Well done!" + Fore.WHITE)  # noqa E501
                 check_again = letter_choice(
                     "Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
                 calculate_again(check_again)
             elif self.users_drinks < 0:
-                print(Fore.RED + "Number of drinks cannot be negative!" + Fore.WHITE)  # noqa E501
+                print(Fore.RED + "The number of drinks cannot be negative!" + Fore.WHITE)  # noqa E501
             elif self.users_drinks > 100:
                 print(Fore.RED + "Sorry, that's way too much to calculate." + Fore.WHITE)  # noqa E501
             else:
@@ -98,12 +98,12 @@ class BAC:
 
     def get_volume(self):
         """
-        Gets size of the drinks in mililiters
+        Gets the size of the drinks in mililiters
         """
         while True:
-            self.volume_of_drink = number_validation("Number of milliliters per drink?\n")  # noqa E501
+            self.volume_of_drink = number_validation("A number of milliliters per drink?\n")  # noqa E501
             if self.volume_of_drink < 1:
-                print(Fore.RED + "Sorry, 1ml is the minimum value to start the calculation" + Fore.WHITE)  # noqa E501
+                print(Fore.RED + "Sorry, 1ml is the minimum value to start the calculation." + Fore.WHITE)  # noqa E501
             elif self.volume_of_drink > 5000:
                 print(Fore.RED + "Sorry, that's way too much to calculate." + Fore.WHITE)  # noqa E501
             else:
@@ -185,9 +185,9 @@ class BAC:
         print(f"* Your legal limit: {self.limit}")
 
         if self.bac_result > self.limit:
-            print("* " + Fore.RED + "Your blood alcohol content is over legal limit! You cannot drive!" + Fore.WHITE)  # noqa E501
+            print("* " + Fore.RED + "Your blood alcohol content is over the legal limit! You cannot drive!" + Fore.WHITE)  # noqa E501
         else:
-            print("* " + Fore.GREEN + "Your blood alcohol content is under legal limit! You can drive!" + Fore.WHITE)  # noqa E501
+            print("* " + Fore.GREEN + "Your blood alcohol content is under the legal limit! You can drive!" + Fore.WHITE)  # noqa E501
 
         print(Fore.BLUE + "*" * 80 + Fore.WHITE)
 
@@ -305,7 +305,7 @@ def number_validation(message_for_user):
             users_number = float((input(message_for_user)))
             break
         except ValueError:
-            print(Fore.RED + "Invalid value! Please use a numbers only!" + Fore.WHITE)  # noqa E501
+            print(Fore.RED + "Invalid value! Please use numbers only!" + Fore.WHITE)  # noqa E501
     users_number = users_number.__round__(3)
     return users_number
 

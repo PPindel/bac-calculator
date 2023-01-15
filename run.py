@@ -30,9 +30,9 @@ class BAC:
     Data model to track Blood Alcohol Content based on user inputs
     """
 
-    def __init__(self, user, licence_type, gender):
+    def __init__(self, user, license_type, gender):
         self.user = user
-        self.licence_type = licence_type
+        self.license_type = license_type
         self.limit = 0
         self.gender = gender
         self.fluid_fraction_of_user = 0
@@ -48,9 +48,9 @@ class BAC:
         """
         Function defines the legal limit of BAC based on the license type
         """
-        if self.licence_type == "P":
+        if self.license_type == "P":
             self.limit = 0.02
-        elif self.licence_type == "F":
+        elif self.license_type == "F":
             self.limit = 0.05
 
     def fluid_fraction_of_body(self):
@@ -169,10 +169,10 @@ class BAC:
         time.sleep(0.5)
         print(f"* Name: {self.user}")
 
-        if self.licence_type == "F":
-            print("* Licence type: Full")
+        if self.license_type == "F":
+            print("* License type: Full")
         else:
-            print("* Licence type: Provisional")
+            print("* License type: Provisional")
 
         print(f"* Weight: {self.weight.__round__(3)} kg")
         print(f"* Consumed {((self.users_drinks * self.volume_of_drink) / 1000).__round__(3)} litre of {self.drinks_percentage.__round__(3)}% alcohol")  # noqa E501
@@ -211,14 +211,14 @@ def slow_print(text):
 
 def welcome_screen():
     """
-    First function in the program, welcomes the user
+    The first function in the program which welcomes the user
     """
     clear()
     print(pyfiglet.figlet_format("B A C\nCALCULATOR"))
     time.sleep(1)
     print(Fore.RED + "***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***\n" + Fore.WHITE)  # noqa E501
     print(Fore.GREEN + "***AND ANSWER THE QUESTION - CAN YOU LEGALLY DRIVE IN IRELAND?***\n" + Fore.WHITE)  # noqa E501
-    print("***BASED ON YOUR DRIVING LICENCE TYPE***\n")
+    print("***BASED ON YOUR DRIVING LICENSE TYPE***\n")
     sys.stdout.write(Fore.YELLOW + "LOADING THE PROGRAM")
     sys.stdout.flush()
     slow_print("..........................................." + Fore.WHITE)
@@ -242,7 +242,7 @@ def important_notice():
 
 def two_options_validation(a, b, user_choice):
     """
-    Function is checking if user selected one of two correct options
+    The function is checking if the user has selected the correct option
     """
     try:
         user_choice = user_choice.capitalize()
@@ -283,8 +283,8 @@ def get_name():
 
 def letter_choice(message_to_display, first_option, second_option):
     """
-    Get the correct alfabetical value from user
-    (Licence type and gender type in this program so far...)
+    Get the correct alfabetical value from the user
+    (License type and gender type in this program so far...)
     """
     while True:
         users_letter = input(message_to_display)
@@ -298,7 +298,7 @@ def letter_choice(message_to_display, first_option, second_option):
 
 def number_validation(message_for_user):
     """
-    Get amount of drinks taken
+    Get the amount of the drinks taken
     """
     while True:
         try:
@@ -312,7 +312,7 @@ def number_validation(message_for_user):
 
 def calculate_again(yes_or_no):
     """
-    Checks if user answered yes or no
+    Checks if the user answered yes or no
     """
     if yes_or_no == "Y":
         main()
@@ -338,12 +338,12 @@ def main():
     welcome_screen()
     important_notice()
     name = get_name()
-    licence = letter_choice(
-        "Please enter your licence type (P for provisional and F for full):\n", "P", "F")  # noqa E501
+    license = letter_choice(
+        "Please enter your license type (P for provisional and F for full):\n", "P", "F")  # noqa E501
     selected_gender = letter_choice(
         "Enter your gender (M for male and F for female):\n", "M", "F")
 
-    bac_user = BAC(name, licence, selected_gender)
+    bac_user = BAC(name, license, selected_gender)
     bac_user.legal_limit_check()
     bac_user.fluid_fraction_of_body()
     bac_user.weight_check()
@@ -359,7 +359,7 @@ def main():
         the_result = [bac_user.user, bac_user.bac_result.__round__(3), bac_user.time_stamp]  # noqa E501
         update_worksheet(the_result, "bac")
 
-    view_results = letter_choice("Would you like to check last 3 saved results? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
+    view_results = letter_choice("Would you like to check the last 3 saved results? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
     if view_results == "Y":
         print()
         records = SHEET.worksheet("bac").get_all_values()

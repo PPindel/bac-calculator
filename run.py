@@ -301,7 +301,7 @@ def thank_you():
     print(Fore.YELLOW)
     slow_print("THANK YOU FOR USING BAC CALCULATOR!\n")
     slow_print("COME BACK AGAIN!\n\n\n")
-    print(Fore.LIGHTRED_EX + "Press the orange button above the terminal to restart the program." + Fore.WHITE)  # noqa E501
+    print(Fore.LIGHTRED_EX + "Click the orange button above the terminal to restart the program." + Fore.WHITE)  # noqa E501
 
 
 def important_notice():
@@ -404,10 +404,10 @@ def update_worksheet(data, worksheet):
     Receives a list of values to be inserted into a worksheet
     Update the relevant worksheet with the data provided
     """
-    print(Fore.YELLOW + "Adding your result to the records..." + Fore.WHITE)
+    print(Fore.YELLOW + "Adding your result to the records...")
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
-    print(Fore. GREEN + "Updated successfully\n" + Fore.WHITE)
+    print(Fore. GREEN + "Updated successfully" + Fore.WHITE)
 
 
 def main():
@@ -453,7 +453,7 @@ def main():
                     records[-2][1],
                     records[-1][1]
                 ],
-                "Time": [
+                "Date and time": [
                     records[-3][2],
                     records[-2][2],
                     records[-1][2]

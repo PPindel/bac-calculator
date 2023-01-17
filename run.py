@@ -28,6 +28,69 @@ METABOLISM = 0.012
 class BAC:
     """
     Data model to track Blood Alcohol Content based on user inputs
+
+    ...
+
+    Attributes
+    ----------
+    user : str
+        name of the user
+    license_type : str
+        single character representing license type
+        P = provisional
+        F = full
+    limit : decimal
+        maximum bac to legally drive in Ireland based on license type
+        0.02 for provisional license
+        0.05 for full license
+    gender : str
+        single character representing gender
+        M = Male
+        F = Female
+    fluid_fraction_of_user : decimal
+        fluid fraction of body based on gender type
+        Male = 0.58
+        Female = 0.49
+    weight : decimal
+        decimal representing weight in KG
+        20 - 635
+    users_drinks : decimal
+        number of drinks consumed by the user
+        0 - 100
+    volume_of_drink : decimal
+        volume per single drink in ml
+        1 - 5000
+    drinks_percentage : decimal
+        alcoholic content of drinks
+        0 - 100
+    users_hours : decimal
+        hours since the last drink was consumed
+        0- 48
+    bac_result : decimal
+        calculated BAC based on user input
+    time_stamp : datetime
+        time of data collection
+
+    Methods
+    -------
+    legal_limit_check()
+        defines the legal limit of bac for the user
+    fluid_fraction_of_body()
+        defines the fluid fraction of user's body
+    weight_check()
+        validates the weight of the user
+    get_drinks()
+        validates amount of drinks comsumed by the user
+    get_volume()
+        validates the volume of alcohol consumed by the user
+    get_percentage()
+        validates the alcoholic content of drinks
+    get_hours()
+        validates time since last drink consumed
+    bac_calculation()
+        calculates the bac of the user
+    final_output()
+        prints calculations and user's data
     """
 
     def __init__(self, user, license_type, gender):
@@ -222,8 +285,20 @@ def welcome_screen():
     sys.stdout.write(Fore.YELLOW + "LOADING THE PROGRAM")
     sys.stdout.flush()
     slow_print("..........................................." + Fore.WHITE)
-    time.sleep(2)
+    time.sleep(3)
     clear()
+
+
+def thank_you():
+    """
+    The function thanks user for using the program
+    """
+    clear()
+    print(pyfiglet.figlet_format("B A C\nCALCULATOR"))
+    print(Fore.YELLOW)
+    slow_print("THANK YOU FOR USING BAC CALCULATOR!\n")
+    slow_print("COME BACK AGAIN!\n\n\n")
+    print(Fore.LIGHTRED_EX + "Press the orange button above the terminal to restart the program." + Fore.WHITE)  # noqa E501
 
 
 def important_notice():
@@ -317,6 +392,7 @@ def calculate_again(yes_or_no):
     if yes_or_no == "Y":
         main()
     else:
+        thank_you()
         quit()
 
 
@@ -338,12 +414,12 @@ def main():
     welcome_screen()
     important_notice()
     name = get_name()
-    license = letter_choice(
+    the_license = letter_choice(
         "Please enter your license type (P for provisional and F for full):\n", "P", "F")  # noqa E501
     selected_gender = letter_choice(
         "Enter your gender (M for male and F for female):\n", "M", "F")
 
-    bac_user = BAC(name, license, selected_gender)
+    bac_user = BAC(name, the_license, selected_gender)
     bac_user.legal_limit_check()
     bac_user.fluid_fraction_of_body()
     bac_user.weight_check()

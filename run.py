@@ -4,6 +4,7 @@ import pyfiglet
 import time
 import sys
 import gspread
+import pandas as pd
 from google.oauth2.service_account import Credentials
 from colorama import Fore
 from datetime import datetime
@@ -277,11 +278,12 @@ def welcome_screen():
     The first function in the program which welcomes the user
     """
     clear()
+    print(Fore.LIGHTCYAN_EX)
     print(pyfiglet.figlet_format("B A C\nCALCULATOR"))
     time.sleep(1)
-    print(Fore.RED + "***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***\n" + Fore.WHITE)  # noqa E501
-    print(Fore.GREEN + "***AND ANSWER THE QUESTION - CAN YOU LEGALLY DRIVE IN IRELAND?***\n" + Fore.WHITE)  # noqa E501
-    print("***BASED ON YOUR DRIVING LICENSE TYPE***\n")
+    print(Fore.GREEN + "***HI! THIS PROGRAM WILL CHECK YOUR BLOOD ALCOHOL CONTENT!***\n" + Fore.WHITE)  # noqa E501
+    print("***AND ANSWER THE QUESTION - CAN YOU LEGALLY DRIVE IN IRELAND?***\n")  # noqa E501
+    print(Fore.LIGHTRED_EX + "***BASED ON YOUR DRIVING LICENSE TYPE***\n")  # noqa E501
     sys.stdout.write(Fore.YELLOW + "LOADING THE PROGRAM")
     sys.stdout.flush()
     slow_print("..........................................." + Fore.WHITE)
@@ -294,6 +296,7 @@ def thank_you():
     The function thanks user for using the program
     """
     clear()
+    print(Fore.LIGHTCYAN_EX)
     print(pyfiglet.figlet_format("B A C\nCALCULATOR"))
     print(Fore.YELLOW)
     slow_print("THANK YOU FOR USING BAC CALCULATOR!\n")
@@ -307,11 +310,11 @@ def important_notice():
     """
     clear()
     print(Fore.RED + "IMPORTANT NOTICE!" + Fore.YELLOW)
-    print("This program is not accurate enough to calculate the exact blood alcohol")  # noqa E501
+    print("\nThis program is not accurate enough to calculate the exact blood alcohol")  # noqa E501
     print("content in your body. The obtained result is averaged and does not take")  # noqa E501
     print("into account many individual preferences.\n")
-    print("Also, please remember that the best practice is to never drink and drive.\n" + Fore.WHITE)  # noqa E501
-    input("Press enter to continue...")
+    print("Also, please remember that the best practice is to never drink and drive.\n" + Fore.GREEN)  # noqa E501
+    input("Press enter to continue..." + Fore.WHITE)
     clear()
 
 
@@ -435,16 +438,34 @@ def main():
         the_result = [bac_user.user, bac_user.bac_result.__round__(3), bac_user.time_stamp]  # noqa E501
         update_worksheet(the_result, "bac")
 
-    view_results = letter_choice("Would you like to check the last 3 saved results? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
+    view_results = letter_choice("\nWould you like to check the last 3 saved results? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
     if view_results == "Y":
-        print()
         records = SHEET.worksheet("bac").get_all_values()
-        for i in range(-3, 0):
-            print("Name: " + Fore.GREEN + f"{records[i][0]}" + Fore.MAGENTA + " ** " + Fore.WHITE + "BAC: " + Fore.RED + f"{records[i][1]}"   # noqa E501
-            + Fore.MAGENTA + " ** " + Fore.WHITE + "saved on: " + Fore.YELLOW + f"{records[i][2]}" + Fore.WHITE)  # noqa E501
+        df = pd.DataFrame(
+            {
+                "Name": [
+                    records[-3][0],
+                    records[-2][0],
+                    records[-1][0]
+                ],
+                "BAC": [
+                    records[-3][1],
+                    records[-2][1],
+                    records[-1][1]
+                ],
+                "Time": [
+                    records[-3][2],
+                    records[-2][2],
+                    records[-1][2]
+                ]
+            }
+        )
+        print(Fore.LIGHTBLUE_EX)
+        print(df)
+        print(Fore.WHITE)
 
     check_again = letter_choice(
-        "\nWould you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
+        "Would you like to calculate again? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
     calculate_again(check_again)
 
 

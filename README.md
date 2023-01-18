@@ -89,17 +89,21 @@ Program in action:
 
 https://user-images.githubusercontent.com/114284732/213212675-34349d57-329d-4501-8e51-d8241b100b53.mp4
 
+
 ## Live Site
 
 https://bac-calculator.herokuapp.com/
+
 
 ## Repository
 
 https://github.com/PPindel/bac-calculator
 
+
 ## Author
 
 Przemyslaw Pindel
+
 
 ## Table of Contents
 🚀 **merit & beyond**
@@ -108,13 +112,17 @@ Generate after readme is complete by copying and pasting your readme from this p
 - [mardown table of contents generator](https://ecotrust-canada.github.io/markdown-toc/)
 **NOTE:** It does have some bugs if you have dashes or trailing spaces in your headers
 
+
 ## How To Use
 
 At first, the user is asked to input a name and provide details like driving license type, gender, weight, alcohol consumed, and elapsed time since the last drink. Afterward, the program calculates the approximate level of blood alcohol content and compares the result with the legal limit of BAC for the user to determine if the user can legally drive in Ireland. After the calculation is done, the user has the option to save the result in the database and can read the last three entries saved.
 
+
 ## Features
 
-- Logo stylized by pyfiglet
+### Implemented features
+
+- Logo in "welcome screend" and "thank you screen" stylized by pyfiglet
 
 ![image](https://user-images.githubusercontent.com/114284732/213209929-b8650f3d-2a7d-4213-90da-283f852977e8.png)
 
@@ -130,20 +138,17 @@ https://user-images.githubusercontent.com/114284732/213211886-7e7a4867-eb4a-429e
 
 ![image](https://user-images.githubusercontent.com/114284732/213209186-1c2ac69e-93cf-4372-b988-0d6fdc8c39bb.png)
 
+- Connected excell spreadsheet to store users' data
 
+![image](https://user-images.githubusercontent.com/114284732/213217591-f3419b3e-1b34-43d2-924e-f7a9757593a8.png)
 
-### Implemented Features
-🚨**Required** 
+- Data from a spreadsheet formatted with pandas output
 
-In each subsection, write out what the feature is for and what value it adds. If there is terminal interaction or output associated with the function, include a screenshot/gif.
-
+![image](https://user-images.githubusercontent.com/114284732/213218674-d77ce3a4-f19b-4a9b-a895-2f84b3f95e1c.png)
 
 ### Future Features
-🚀 **merit & beyond**
 
-Use this section to discuss plans for additional features to be implemented in the future:
-
-If you end up not developing some features you hoped to implement, you can include those in this section.
+The plan for future features is to add an option to select more drinks with different content of alcohol
 
 
 ## Flow Chart

@@ -438,7 +438,7 @@ def main():
         the_result = [bac_user.user, bac_user.bac_result.__round__(3), bac_user.time_stamp]  # noqa E501
         update_worksheet(the_result, "bac")
 
-    view_results = letter_choice("\nWould you like to check the last 3 saved results? Enter Y for yes or N for no: ", "Y", "N")  # noqa E501
+    view_results = letter_choice("\nWould you like to check the last 3 saved results? Type Y for yes or N for no: ", "Y", "N")  # noqa E501
     if view_results == "Y":
         records = SHEET.worksheet("bac").get_all_values()
         df = pd.DataFrame(

@@ -164,11 +164,14 @@ The plan for future features is to add an option to select more drinks with diff
 
 
 ## Libraries used
-🚀 **merit & beyond**
 
-List out the python libraries you purposefully used in your project and why. You can look at your requirements.txt file and go back to https://pypi.org/ to rediscover the purpose of a library if needed.
+- os and sys - clear screen function
+- pyfiglet - ascii art (BAC Calculator logo)
+- datetime - for time and date stamp
+- gspread - for google spreadsheets
+- colorama - for better ux
+- pandas - for better output formatting
 
-A bulleted list is a good presentation for this information.
 
 ## Testing
 🚨**Required** 

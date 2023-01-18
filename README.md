@@ -111,13 +111,23 @@ Generate after readme is complete by copying and pasting your readme from this p
 At first, the user is asked to input a name and provide details like driving license type, gender, weight, alcohol consumed, and elapsed time since the last drink. Afterward, the program calculates the approximate level of blood alcohol content and compares the result with the legal limit of BAC for the user to determine if the user can legally drive in Ireland. After the calculation is done, the user has the option to save the result in the database and can read the last three entries saved.
 
 ## Features
-🚨**Required** 
 
-Use this section to itemize the features of your project. 
+- Logo stylized by pyfiglet
 
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
+![image](https://user-images.githubusercontent.com/114284732/213209929-b8650f3d-2a7d-4213-90da-283f852977e8.png)
 
-It's easiest to break this section down into piece parts or core functionality blocks such as data upload, user input, analysis and data output; focusing on the atomic functions and data model(s) or classes you created to make the program work. 
+- Loading animations to create an illusion of an advanced project and function to clear the terminal so everything looks nice and clear
+
+
+
+- The program has implemented complex input handling to avoid errors and give a user some tips and commentary about the input (sometimes funny :))
+
+![image](https://user-images.githubusercontent.com/114284732/213208625-44227cba-847c-4610-8b77-9efeca083008.png)
+
+- The user has the option to save his result and compare it with the last entries from other users.
+
+![image](https://user-images.githubusercontent.com/114284732/213209186-1c2ac69e-93cf-4372-b988-0d6fdc8c39bb.png)
+
 
 
 ### Implemented Features

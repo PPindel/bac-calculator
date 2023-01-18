@@ -83,9 +83,11 @@ Copy your readme to https://luciopaiva.com/markdown-toc/ to make a table of cont
 # BAC CALCULATOR
 The BAC calculator is an easy-to-use tool to check your approximate level of blood alcohol content based on your physical condition and alcohol consumed.
 
-
 ![image](https://user-images.githubusercontent.com/114284732/213199450-c455f8ef-26d0-4abc-abf6-de8cf19893b9.png)
 
+Program in action:
+
+https://user-images.githubusercontent.com/114284732/213212675-34349d57-329d-4501-8e51-d8241b100b53.mp4
 
 ## Live Site
 
@@ -118,7 +120,7 @@ At first, the user is asked to input a name and provide details like driving lic
 
 - Loading animations to create an illusion of an advanced project and function to clear the terminal so everything looks nice and clear
 
-
+https://user-images.githubusercontent.com/114284732/213211886-7e7a4867-eb4a-429e-898b-91bb016690bd.mp4
 
 - The program has implemented complex input handling to avoid errors and give a user some tips and commentary about the input (sometimes funny :))
 

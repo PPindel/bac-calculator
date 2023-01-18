@@ -152,34 +152,16 @@ The plan for future features is to add an option to select more drinks with diff
 
 
 ## Flow Chart
-🚀 **merit & beyond**
 
-This section is where you would share logic diagrams and spreadsheets that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in a separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser. 
+![image](https://user-images.githubusercontent.com/114284732/213254120-cb17d2bc-8dfd-4271-8b58-0700b6960be2.png)
 
-The flowchart can be as simple as a picture of a drawing of how you envisioned laying out the logic for you project, or done with a professional tool such as powerpoint, googlesheets, or [https://app.diagrams.net/](https://app.diagrams.net/) They are a roadmap and do not have to be 100% accurate of the final product.
 
 ## Data Model/ Classes
-🚨**Required** 
 
-In this section write our your data model(s) or classes. 
+![image](https://user-images.githubusercontent.com/114284732/213254500-32fea4b2-8a7c-4cd4-93f7-962d905201f6.png)
 
-You might want to include subsections that include how the data in the model is initialized and then the methods that you created to update it through the program.
+![image](https://user-images.githubusercontent.com/114284732/213254552-9918602a-cdc4-4038-ac29-4fb402d8918d.png)
 
-
-You can create a table and take a screenshot, or you can write up subsections in markdown:
-
-![image](https://user-images.githubusercontent.com/23039742/130148204-b56406bf-0fff-48f3-9dee-2f3cdbe67cc5.png)
-
-### Class X
-To better group the game as an object, I wrote a class representing its properties and had method functions to update those properties: 
-
-**Properties**
-- property 1: is a {string} it represents {something} 
-- property 2: is a {string} it represents {something} 
-
-**Methods**
-- **\_\_init\_\_**: Initialize method, it starts the class off with default parameters as if a user just started to play a game.
-- **\_\_str\_\_**: Returns a string representation of the class/object
 
 ## Libraries used
 🚀 **merit & beyond**

@@ -80,33 +80,24 @@ Copy your readme to https://luciopaiva.com/markdown-toc/ to make a table of cont
 
 ====================================== The Sections you Fill in are below ==============================
 
-# PROJECT NAME
-🚨**Required** 
-*replace the **PROJECT NAME** header with your project's name*
-- Include a screenshot or gif of your terminal running in heroku
-- One or two paragraphs providing an overview of your project.
-- Write this as a sales pitch or commercial to entice users to interact with your site or how you want investors to purchase your website.
+# BAC CALCULATOR
+The BAC calculator is an easy-to-use tool to check your approximate level of blood alcohol content based on your physical condition and alcohol consumed.
 
-**To create a gif**:
-1. take a video of your program using slack in a message to yourself
-2. download the video
-3. upload it to https://convertio.co/mp4-gif/
-4. download the gif
-5. copy the file and paste it into your readme like you do with screenshots
+
+![image](https://user-images.githubusercontent.com/114284732/213199450-c455f8ef-26d0-4abc-abf6-de8cf19893b9.png)
+
 
 ## Live Site
-🚨**Required** 
 
-- Include a link to deployed project (typically a herokuapp url )
+https://bac-calculator.herokuapp.com/
 
 ## Repository
-🚨**Required** 
 
-- Include a Link to the GitHub repository
+https://github.com/PPindel/bac-calculator
+
 ## Author
-🚨**Required** 
 
-DEVELOPER_NAME (take credit for the work you do!)
+Przemyslaw Pindel
 
 ## Table of Contents
 🚀 **merit & beyond**
@@ -115,12 +106,9 @@ Generate after readme is complete by copying and pasting your readme from this p
 - [mardown table of contents generator](https://ecotrust-canada.github.io/markdown-toc/)
 **NOTE:** It does have some bugs if you have dashes or trailing spaces in your headers
 
-## How To Play/Use
-🚨**Required** 
+## How To Use
 
-Paragraph or bullet points of how the user initiates the program and interfaces with it. You could have videos of each bit if you want and direct what the user should do.
-
-you can have a gif here too if you want.
+At first, the user is asked to input a name and provide details like driving license type, gender, weight, alcohol consumed, and elapsed time since the last drink. Afterward, the program calculates the approximate level of blood alcohol content and compares the result with the legal limit of BAC for the user to determine if the user can legally drive in Ireland. After the calculation is done, the user has the option to save the result in the database and can read the last three entries saved.
 
 ## Features
 🚨**Required** 

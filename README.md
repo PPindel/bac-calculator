@@ -174,101 +174,34 @@ The plan for future features is to add an option to select more drinks with diff
 
 
 ## Testing
-🚨**Required** 
-
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your features and ensure that they all work as intended in an easy and straightforward way for the users to achieve their goals.
-
 
 ### Validation Testing
-🚨**Required** 
 
-You should try to ensure you code is valid and follows proper indentation.  In this section you should write up any websites you used to validate your code. As your projects becomes more complex these tools may change.
+![image](https://user-images.githubusercontent.com/114284732/213302003-a68cf1d3-120c-4297-b6d3-3f8bf0c3a3d9.png)
 
-For each python file in your project, paste it into [CI's pep8 tool](https://pep8ci.herokuapp.com/), and take a screenshot of the linter output showing NO ERRORS
-
-![image](https://user-images.githubusercontent.com/23039742/212106175-36b2f18a-7c75-458d-94dd-9886e81c71f3.png)
-
-Ideally you would have no errors remaining outside of line too long which you can fix by 
-
-adding
-```$python 
-# noqa
-```
-There is a space before the # and after it to skip the quality assurance for that line.
-
-Note any errors or warnings you are ignoring and why.
 
 ### Manual Testing
-🚨**Required** 
 
-Use Markdown to track how you tested each bit of user input for each valid option, various invalid entries and leading/trailing spaces
+The program is secured by input validation and error catchers to prevent data type issues or calculation problems (for example division by zero error). The video below presents the input validation for each step:
 
-**Feature 1**
-- [ ] invalid entry, says sorry and re-prompts
-- [ ] no entry, says sorry and re-prompts
-- [ ] alpha when numeric expected, sorry and re-prompts
-- [ ] valid entry with leading spaces, trimmed and shows proper next stage
-- [ ] valid entry with trailing spaces, trimmed and shows proper next stage
+https://user-images.githubusercontent.com/114284732/213303925-504fc490-c510-4396-b75b-2635858560bb.mp4
 
-You should also call out how you tested any other features such as:
-- Welcome Message, recaps username
-- Score update shows current score
-- color change for correct vs incorrect
-- google sheet updated properly
-
-If you prefer spreadsheets, create a google-sheet and link to it in this section, just make sure you update the permissions to allow anyone to view it. You can make a [COPY of this example](https://docs.google.com/spreadsheets/d/1w_JUmFfzHVtXdHse6ib82BGnRMPlPqufSOnAVN3bVl8/edit?usp=sharing) and update it as your own. Just make sure you share it to anyone with the link:
-https://docs.google.com/spreadsheets/d/1w_JUmFfzHVtXdHse6ib82BGnRMPlPqufSOnAVN3bVl8/edit?usp=sharing
 
 ### Defect Tracking
-🚨**Required** 
 
-Try to create issues in real time as it better reflects the daily life of a developer.
+- problem with division by zero when user entered 0 value as weight - discovered on 10.01.2023 and fixed on 10.01.2023
+- too long output in print statement on line 441 - discovered on 18.01.2023 and fixed on 18.01.2023
 
-The easiest way to track defects is by using GITHUB's Issues to track these as it's really easy to copy/paste screenshots in and then write up how you closed them. At this stage you don't need a custom template or labels, that comes in P4.
-
- Here's a [guide to GitHub Defects](Defects.md)
 
 ### Defects of Note
-🚀 **merit & beyond**
 
-Some defects are more pesky than others. Highlight 3-5 of the bugs that drove you the most nuts and link to them directly here.
+In the beginning a lot of bad users' input were causing problems. The biggest challenge was to create effective tool to prevent the user from inputting bad data and secure the program.
 
 
 ### Outstanding Defects
-🚨**Required** 
 
-It's ok to not resolve all the defects you found as long as:
-- it does not impact a user from completing a vital function on the website
-- it only affects a very small subset of users
-- is an extreme edge case that very few users would try
-- there is an open issue against a framework, browser or technology used
+No outstanding bugs known
 
-If you know of something that isn't quite right, create an issue and link to it here and explain why you chose not to resolve it. 
-
-Sometimes it's as simple, word wrapping issue that makes the site look odd at a certain screensize that you just didn't have time to fix due to the impending deadline it's best to mention it but note why you allowed it to go live: "Yes it looks odd, but it doesn't impact core functionality of the site." than to let the accessors think you didn't notice it. 
-
-### Commenting Code
-🚀 **merit & beyond**
-
-Make sure you use triple double quotes to document functions and classes.
- Here'a  documentation worthy example:
-```$python
-def yes_no(question):
-    """
-    Function to ask a simple yes no question of the user.
-    :param question: String displayed as the question
-    :return: answer: String equal to "1" or "2" representing yes or no respectfully
-    """
-    print(question)
-    print("yes = 1")
-    print("no = 2")
-    answer = input("enter your answer here \n").strip()
-    while answer not in ("1", "2"):
-        print("please choose 1 for yes and 2 for no")
-        answer = input("enter your answer here \n").strip()
-    return answer
-
-```
 
 ## Deployment
 🚨**Required** 

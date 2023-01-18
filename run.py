@@ -1,13 +1,13 @@
 # imports:
 import os
-import pyfiglet
 import time
 import sys
+from datetime import datetime
+import pyfiglet
 import gspread
 import pandas as pd
 from google.oauth2.service_account import Credentials
 from colorama import Fore
-from datetime import datetime
 
 # constants:
 SCOPE = [

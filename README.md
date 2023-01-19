@@ -103,12 +103,68 @@ The plan for future features is to add an option to select more drinks with diff
 
 ### Validation Testing
 
+The program was validated at https://pep8ci.herokuapp.com/ and no errors were found.
+There were a few lines that were too long so # noqa was added to suppress errors where line breaks would have made the code harder to read.
+
 ![image](https://user-images.githubusercontent.com/114284732/213302003-a68cf1d3-120c-4297-b6d3-3f8bf0c3a3d9.png)
+
+
+### User Testing
+
+My friends helped me a lot with testing BAC Calculator and no bugs or errors were reported. 29 entries was saved in Google spreadsheet (probably half of this was done by myself). I even compared the result given by my program with real breathalyser, and the result was impressively close.
+
+![image](https://user-images.githubusercontent.com/114284732/213537574-a9a7def5-69cd-4eb2-bf21-ca82c4da9496.png)
 
 
 ### Manual Testing
 
-The program is secured by input validation and error catchers to prevent data type issues or calculation problems (for example division by zero error). The video below presents the input validation for each step:
+The program is secured by input validation and error catchers to prevent data type issues or calculation problems (for example division by zero error).
+- **Disclaimer**
+  - user enters a sapace, special characters, numbers, and letters - stay on screen
+  - user hits enter button - user goes to the next screen
+- **Name Entry**
+  - user enters nothing - see Invalid name! Please use letters only! in red and re-prompt
+  - user enters full name with space - see red error message and re-prompt
+  - user enters any number or special sign - see red error message and re-prompt
+  - user enters alpha characters only - goes to next prompt, via animated print out
+- **License Type Prompt**
+  - user enters unacceptable input: sees "Wrong data - you entered {X}. Please use P or F ONLY!"
+  - user enters spaces + lower case f + trailing spaces: user goes to next prompt (the input is formatted by the function)
+- **Gender Prompt**
+  - the same rules as above are applied to gender selection prompt
+  - correct input leads to the next screen
+- **Weight Prompt**
+  - the program accepts only numerical value between 20 and 635
+  - if user enters unacceptable input: sees red error message and re-prompt
+  - secret feature: input weight over 635 kg suggests to user contacting Guinness World Records (as the current world record for human is 635 kg)
+  - correct input leads to the next screen
+- **Drinks Number Prompt**
+  - the program accepts only numerical value between 0 and 100
+  - if 0 is entered by the user, program ends (as there is nothing to calculate) and user sees appropriate message
+  - if user enters unacceptable input: sees red error message and re-prompt
+  - correct input leads to the next screen
+- **Drinks Volume Prompt***
+  - the program accepts only numerical value between 1 and 5000
+  - if user enters unacceptable input: sees red error message and re-prompt
+  - secret feature: if number of drinks multiplied by volume gives result over 5000 ml, user gets yellow warning: "Please remember - drinking so much of any liquid is not healthy..."
+  - correct input leads to the next screen
+- **Percentage Prompt**
+  - the program accepts only numerical value higher than 0 and the max is 100
+  - if user enters unacceptable input: sees red error message and re-prompt
+  - correct input leads to the next screen
+- **Time prompt**
+  - the program accepts only numerical value between 0 and 48
+  - if user enters unacceptable input: sees red error message and re-prompt
+  - secret feature: input over 48 give yellow message to the user "I really suggest to contact a doctor." (as any intoxication longer than two days might be lethal...)
+  - correct input leads to the next screen, via animated print out
+- **Final Output**
+  - if all inputs were correct, user can see the final calculation with the result
+  - as next, user has an option to save the result in database (Y or N - same input validation as in License Prompt)
+  - then user can see last 3 results saved in database (Y or N - same input validation as in License Prompt)
+  - the last question asks user to calculate again (Y or N - same input validation as in License Prompt)
+  - Y restarts the program, N ends the program and the thank you message is displayed
+
+The video below presents the input validation for each step:
 
 https://user-images.githubusercontent.com/114284732/213303925-504fc490-c510-4396-b75b-2635858560bb.mp4
 
@@ -129,11 +185,22 @@ In the beginning a lot of bad users' input were causing problems. The biggest ch
 No outstanding bugs known
 
 
-## Deployment
+# Deployment
+
+## Prerequisites
 
 ### Google API
 
 BAC calculator is connected with Google API.
+
+File details:
+- Document name:  bac_calculator_data
+- Columns A-C row 1: user, bac result, time stamp
+- Next rows contains saved results
+- Sheet Name: bac
+
+![image](https://user-images.githubusercontent.com/114284732/213544905-a8751909-04bd-419d-8e2b-333088c32fa9.png)
+
 To set this up we need to:
 
 1. install required libraries in our Python environment (pip3 install gspread google-auth) then import downloaded packages and specify the scope

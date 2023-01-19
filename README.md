@@ -204,70 +204,46 @@ No outstanding bugs known
 
 
 ## Deployment
-🚨**Required** 
 
 ### Requirements
-🚨**Required** 
 
-If the user is required to have certain keys and credentials you should include this section with directions on how to get the necessary information.
-ex)
-1. **Google Account:** In order to have this program work, you need a google account. If you don't have one  [Create a google account](https://accounts.google.com/Signup)
-2. **Google APIs**
-    1. in a new incognito tab, log into your new google account.
-    1. then update the url to be: https://console.cloud.google.com/getting-started?pli=1 
-        
-        **GOOGLE DRIVE API Access**
-        1.  create a new project for this, call it XXXXXX (You might want to refer to what you see in this video: https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+LS101+2021_T1/courseware/293ee9d8ff3542d3b877137ed81b9a5b/071036790a5642f9a6f004f9888b6a45/ at the bottom of the screen to write out steps.)
-        2. Then click on Add APIs and Services and select Libraries
-        3. Search for Google Drive
-        4. Click Enable
-        5. Click Create Credentials
-        6. Select Google Drive API from the drop down, Application Data, then no and click the Next Button
-        7.  (https://developers.google.com/drive/api/v3/enable-drive-api) 
-        8. for service account details fill in a service account name ex) xxx_API, then click Create and Continue
-        9. For the Accoun acces, select Role: Basic/Editor then continue
-        10. Then Click Done
-        11. Now select the newly created service account
-        12. Click on the KEYS Tab
-        13. Click Add Key
-        14. Select JSON type (right click to show in folder so you know where the file was saved.
-        
-        **GOOGLE SHEETS API Access**
-        You may need to us the back button get to the APIS & SErvices section from where you were.
-        1. click the Libray  Tab and serarch for Google Sheets
-        2. click enable
+### Google API
 
-3. The downloaded credentialsJSON file is basically your creds.json file that you need to put into your heroku settings or gitpod environment to access your google drive.
+BAC calculator is connected with Google API.
+To set this up we need to:
 
-4. Google Sheet Template
-  - If you had to create specific sheets for your project, instruct users to make their own copy of it from yours and rename it back to what the python project expects
-  - And don't forget to share the spreadsheet in question with the client_email from the creds.json 
+1. install required libraries in our Python environment (pip3 install gspread google-auth) then import downloaded packages and specify the scope
+2. create an excell file on our Google account
+3. go to Google Cloud Platform
+4. select the New Project
+5. go to project created, select API & Services from the side menu, and library
+6. we must enable 2 APIs - Google Drive and Google Sheets
+7. to enable Google Drive API we need to create credentials
+8. click Create Credentials
+9. from the "Which API are you using?" dropdown menu, choose Google Drive API
+10. for the "What data will you be accessing?" question, select Application Data
+11. for the "Are you planning to use this API with Compute Engine, Kubernetes Engine, App Engine, or Cloud Functions?" question, select No, I'm not using them
+12. click Next
+13. enter a Service Account name, you can call it anything you like - I will call mine "LoveSandwiches" - then click Create
+14. in the Role Dropdown box choose Basic > Editor then press Continue
+15. these options can be left blank, click Done
+16. on the next page, click on the Service Account that has been created
+17. on the next page, click on the Keys tab
+18. click on the Add Key dropdown and select Create New Key
+19. select JSON and then click Create. This will trigger the json file with your API credentials in it to download to your machine. We must copy this file to our GitPod library and also will need this to deploy our project to Heroku
 
 ### Gitpod
-🚀 **merit & beyond**
 
-This section should describe the process someone would have to go through to get the local working in gitpod.  Such as install requirements.txt  and setting up a creds.json file that is in the gitignore and keeping their workspace.
+1. to run the program in GitPod we need to copy creds.json file:
 
-If you have project settings required such as a creds.json file from the GOOGLE DRIVE API acess, please provide an example of that file in the writeup with the project key values:
-```$python
-{
-    "type": "service_account",
-    "project_id": "<YOUR_VALUE>",
-    "private_key_id": "<YOUR_VALUE>",
-    "private_key": "<YOUR_VALUE>",
-    "client_email": "<YOUR_VALUE>",
-    "client_id": "<YOUR_VALUE>",
-    "auth_uri": "https://accoutns.google.com/0/oauth2/auth",
-    "token_uri": "https://oauth2.googleapis.com/token",
-    "auth_provider_x509_cer_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "clien_x509_cert_url": "<YOUR_VALUE>"
-}
-```
+![image](https://user-images.githubusercontent.com/114284732/213476935-7abc1698-d578-432b-8da8-28388c27e170.png)
 
-If you have any dependencies, you should instruct users to install them
-```$python
-pip3 install -r requirements.txt
-```
+2. install all libraries from requirements.txt (pip3 install -r requirements.txt)
+
+![image](https://user-images.githubusercontent.com/114284732/213477292-7ecd8c43-d3ad-4b4a-8091-3b891612afc1.png)
+
+3. run command "python3 run.py" in terminal
+
 
 ### Heroku
 🚨**Required** 
@@ -317,30 +293,24 @@ B. Deploy either manual or automatic
 ![image](https://user-images.githubusercontent.com/23039742/132136241-9d76fabb-39f0-4696-bc5f-047398fdaf41.png) 
 
 
-
 ## Credits
-🚨**Required** 
 
-To avoid plagiarism amd copyright infringement, you should mention any other projects, stackoverflow, videos, blogs, etc that you used to gather imagery or ideas for your code even if you used it as a starting point and modified things. Giving credit to other people's efforts and ideas that saved you time acknowledges the hard work others did. 
-
--[Code Institute Template](https://github.com/Code-Institute-Org/python-essentials-template)
-    - The Template for the GUI for this project was provided by Code Institute. This allows for the Command line to be shown and used within the browser.
+- Art O'Coileain from TU Dublin Tallaght - BAC formula and project idea
+- https://www.geeksforgeeks.org/ - how to use pyfiglet and colorama
+- https://pypi.org - how to use pandas library
+- https://stackoverflow.com/ - code solutions
+- https://www.w3schools.com/ - code solutions
+- [Code Institute Template](https://github.com/Code-Institute-Org/python-essentials-template)
+- The Template for the GUI for this project was provided by Code Institute. This allows for the Command line to be shown and used within the browser.
 
 ### Content
-🚨**Required** 
+ - Code Institute - Love Sandwiches project (Google API connection instructions)
 
-Use bullet points to list out sites you copied text from and cross-reference where those show up on your site
-
-### Media
-🚨**Required** 
-
-Make a list of sites you used images from. If you used several sites try to match up each image to the correct site. This includes attribution for icons if they came from font awesome or other sites, give them credit.
 
 ### Acknowledgments
-🚨**Required** 
 
-This is the section where you refer to code examples, mentors, blogs, stack overflow answers and videos that helped you accomplish your end project. Even if it's an idea that you updated you should note the site and why it was important to your completed project.
+Big thanks to Malia Havlicek - Code Institute mentor for her ideas and support in this project! Also, I would like to thank all my friends for live testing the program!
 
-If you used a CodeInstitute Instructional project as a starting point. Make note of that here too.
+https://pep8ci.herokuapp.com/ - code validation tool
 
 

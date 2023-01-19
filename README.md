@@ -1,85 +1,3 @@
-# OVERVIEW
-
-This template was made as a guide to ensure you cover assessment criteria in your third milestone write up. It is specific to the **PORTFOLIO 3: Python Essentials** project. It was based off the [battleship readme](https://codeinstitute.s3.amazonaws.com/CSSEssentials/p3-readme.png) with a few additions to help elevate you to possible distinction status.
-
-
-Sections marked as 🚨**Required**  and 🚀 **merit & beyond**
-
-**Please note** that project assessment criteria changes more often than these guides are updated so double-check the submission criteria before assuming the  🚨**Required**  is all you have to do to pass.
-
-## Helpful tools
-
-### Debugging Your run.py in gitpod
-With a single file importing others, gitpod lets you set breakpoints where you then can look at variables and try out syntax.
-
-https://user-images.githubusercontent.com/23039742/212526268-ec02736e-e199-4c63-92b0-96b219f24abc.mp4
-
-
-### Screenshots and Videos
-**Here’s a great video on how to add videos to your readme! no need to convert to gifs!!**
-
-https://www.youtube.com/watch?v=G3Cytlicv8Y
-
-> 1. record a video via slack
-> 2. download it
-> 3. in github, edit your readme via the pencil icon
-> 4. type a place holder word and highlight it
-> 5. drag and drop mp4 file over that text
-> 6. scroll down to the commit area
-> 7. update the default commit message
-> 8. click the green button
-> 9. ```git pull``` changes to your gitpod workspace
-
-**You can do the steps 3-9 for the image/screenshot uploads too!**
-
-### Cheatsheets and Auto Generation Tools
-
-Markdown's not all that easy so sometimes you may want to use some tools to make tables. 
-
-- [Markdown Cheatsheet](https://guides.github.com/features/mastering-markdown/)
-- [markdown table generator](https://www.tablesgenerator.com/markdown_tables) - used to help with documentation table formatting
-- [mardown table of contents generator](https://luciopaiva.com/markdown-toc/) - used to create table of contents (be weary it does have some bugs if you have dashes or trailing spaces in your headers)
-- [readme.so](https://readme.so/) - if you don't want to learn markdown, this tool might help you
-
-# Table of Contents
-🚀 **merit & beyond**
-
-Copy your readme to https://luciopaiva.com/markdown-toc/ to make a table of contents.  This will help assessors to see the structure of your readme. Just test it out ast this tool isn't perfect. It tends to mess up with special characters like dashes.
-
-
-- [PROJECT NAME](#project-name)
-  - [Live Site](#live-site)
-  - [Repository](#repository)
-  - [Author](#author)
-  - [Table of Contents](#table-of-contents)
-  - [How To Play/Use](#how-to-playuse)
-  - [Features](#features)
-    - [Implemented Features](#implemented-features)
-    - [Future Features](#future-features)
-  - [Flow Chart](#flow-chart)
-  - [Data Model/ Classes](#data-model-classes)
-    - [Class X](#class-x)
-  - [Libraries used](#libraries-used)
-  - [Testing](#testing)
-    - [Validation Testing](#validation-testing)
-    - [Manual Testing](#manual-testing)
-    - [Defect Tracking](#defect-tracking)
-    - [Defects of Note](#defects-of-note)
-    - [Outstanding Defects](#outstanding-defects)
-    - [Commenting Code](#commenting-code)
-  - [Deployment](#deployment)
-    - [Requirements](#requirements)
-    - [Gitpod](#gitpod)
-    - [Heroku](#heroku)
-  - [Credits](#credits)
-    - [Content](#content)
-    - [Media](#media)
-    - [Acknowledgments](#acknowledgments)
-    
-
-
-====================================== The Sections you Fill in are below ==============================
-
 # BAC CALCULATOR
 The BAC calculator is an easy-to-use tool to check your approximate level of blood alcohol content based on your physical condition and alcohol consumed.
 
@@ -106,11 +24,19 @@ Przemyslaw Pindel
 
 
 ## Table of Contents
-🚀 **merit & beyond**
-
-Generate after readme is complete by copying and pasting your readme from this point & below into this tool:
-- [mardown table of contents generator](https://ecotrust-canada.github.io/markdown-toc/)
-**NOTE:** It does have some bugs if you have dashes or trailing spaces in your headers
+- [BAC CALCULATOR](#bac-calculator)
+  - [Live Site](#live-site)
+  - [Repository](#repository)
+  - [Author](#author)
+  - [Table of Contents](#table-of-contents)
+  - [How To Use](#how-to-use)
+  - [Features](#features)
+  - [Flow Chart](#flow-chart)
+  - [Data Model/ Classes](#data-model-classes)
+  - [Libraries used](#libraries-used)
+  - [Testing](#testing)
+  - [Deployment](#deployment)
+  - [Credits](#credits)
 
 
 ## How To Use
@@ -246,51 +172,30 @@ To set this up we need to:
 
 
 ### Heroku
-🚨**Required** 
 
-This section should describe the process you went through to deploy the project to Heroku. Include screenshots if you think they would make the process easier.
+1. Log into Heroku and create new app (the name of the app must be unique):
 
-You may want to re-watch the [python essentials deployment video](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+LS101+2021_T1/courseware/293ee9d8ff3542d3b877137ed81b9a5b/e3b664e16366444c8d722c5d8340b340/?child=first) when writing up this section.
+![image](https://user-images.githubusercontent.com/114284732/213482351-4b89aa2f-5c07-4369-903b-64dba4f3dd95.png)
 
-
-If you have project settings required for Heroku, provide a table of the keys and values.
-Do not share your personal keys but either cut them out of the screen shot or say <YOUR_VALUE> and include links on how the user would obtain such values.
-
-1. Fork the repository
-
-Make a fork so you have a copy of the repository in your own git hub account: https://github.com/maliahavlicek/portfolio_project_03
-
-![image](https://user-images.githubusercontent.com/23039742/132136504-eb79a6f3-0205-4c82-80c2-eef136ec7e4c.png)
-
-
-2.  New Project
-Log into Heroku and create a new project. Name it something like XXX_coders_bistro.
-
-
-3.  Settings
-On the settings tab you have to address two things:
+2.  On the settings tab you have to address two things:
 A. **Config Vars**
-
-  ![image](https://user-images.githubusercontent.com/23039742/132135869-215d2e0f-805d-40a8-a8c2-fb1098e2645d.png)
-
-  At a bar minimum you should show the user that they need to add the PORT. 8000 key value pair.
-
+  Add to vars: CRED and as value cres.json content, and second var PORT and 8000 as value
+  
+  ![image](https://user-images.githubusercontent.com/114284732/213483562-ba484e7e-e3b0-46d7-b2f2-739b08bd2f0a.png)
 
 B. **Build Packs**
+  In build packs add Python and Node JS
+  
+  ![image](https://user-images.githubusercontent.com/114284732/213483833-2822f9c4-4199-42e3-8a33-9f8322fcb253.png)
 
-  ![image](https://user-images.githubusercontent.com/23039742/132135918-28cac112-7766-4277-905c-4a4963d8442d.png)
+3. Deploy tab
+A. Connect Heroku app with GitHub and select the correct repository:
 
-  add Python Then Node.js
-
-
-4. Deploy
-A. Set up to github and select the correct repository:
-
-  ![image](https://user-images.githubusercontent.com/23039742/132136113-c257c921-d10c-4ccc-af09-6a1d25136395.png)
+![image](https://user-images.githubusercontent.com/114284732/213482680-dc948d5c-36e0-4bc1-869c-7841e70a92d9.png)
 
 B. Deploy either manual or automatic
 
-![image](https://user-images.githubusercontent.com/23039742/132136241-9d76fabb-39f0-4696-bc5f-047398fdaf41.png) 
+![image](https://user-images.githubusercontent.com/114284732/213485372-9771e133-c2d5-4403-831f-3127bf20dcb2.png)
 
 
 ## Credits

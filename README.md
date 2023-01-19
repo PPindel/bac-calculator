@@ -48,7 +48,7 @@ At first, the user is asked to input a name and provide details like driving lic
 
 ### Implemented features
 
-- Logo in "welcome screend" and "thank you screen" stylized by pyfiglet
+- Logo in "welcome screen" and "thank you screen" stylized by pyfiglet
 
 ![image](https://user-images.githubusercontent.com/114284732/213209929-b8650f3d-2a7d-4213-90da-283f852977e8.png)
 

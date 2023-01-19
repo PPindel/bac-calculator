@@ -144,7 +144,7 @@ The program is secured by input validation and error catchers to prevent data ty
   - if 0 is entered by the user, program ends (as there is nothing to calculate) and user sees appropriate message
   - if user enters unacceptable input: sees red error message and re-prompt
   - correct input leads to the next screen
-- **Drinks Volume Prompt***
+- **Drinks Volume Prompt**
   - the program accepts only numerical value between 1 and 5000
   - if user enters unacceptable input: sees red error message and re-prompt
   - secret feature: if number of drinks multiplied by volume gives result over 5000 ml, user gets yellow warning: "Please remember - drinking so much of any liquid is not healthy..."

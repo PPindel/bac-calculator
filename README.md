@@ -131,8 +131,6 @@ No outstanding bugs known
 
 ## Deployment
 
-### Requirements
-
 ### Google API
 
 BAC calculator is connected with Google API.
@@ -217,5 +215,3 @@ B. Deploy either manual or automatic
 Big thanks to Malia Havlicek - Code Institute mentor for her ideas and support in this project! Also, I would like to thank all my friends for live testing the program!
 
 https://pep8ci.herokuapp.com/ - code validation tool
-
-

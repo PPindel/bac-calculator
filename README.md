@@ -3,7 +3,7 @@ The BAC calculator is an easy-to-use tool to check your approximate level of blo
 
 ![image](https://user-images.githubusercontent.com/114284732/213199450-c455f8ef-26d0-4abc-abf6-de8cf19893b9.png)
 
-Program in action:
+Program in action (please use the full screen for better quality):
 
 https://user-images.githubusercontent.com/114284732/213212675-34349d57-329d-4501-8e51-d8241b100b53.mp4
 
@@ -53,6 +53,7 @@ At first, the user is asked to input a name and provide details like driving lic
 ![image](https://user-images.githubusercontent.com/114284732/213209929-b8650f3d-2a7d-4213-90da-283f852977e8.png)
 
 - Loading animations to create an illusion of an advanced project and function to clear the terminal so everything looks nice and clear
+  (please use the full screen for better quality)
 
 https://user-images.githubusercontent.com/114284732/213211886-7e7a4867-eb4a-429e-898b-91bb016690bd.mp4
 
@@ -165,6 +166,7 @@ The program is secured by input validation and error catchers to prevent data ty
   - Y restarts the program, N ends the program and the thank you message is displayed
 
 The video below presents the input validation for each step:
+(please use the full screen for better quality)
 
 https://user-images.githubusercontent.com/114284732/213303925-504fc490-c510-4396-b75b-2635858560bb.mp4
 

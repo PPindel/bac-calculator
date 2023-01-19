@@ -238,11 +238,17 @@ To set this up we need to:
 
 ### Heroku
 
-1. Log into Heroku and create new app (the name of the app must be unique):
+1. Fork the repository
+   Make a fork so you have a copy of the repository in your own git hub account:
+   https://github.com/PPindel/bac-calculator
+   Instructions how to fork can be found here:
+   https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository
+
+2. Log into Heroku and create new app (the name of the app must be unique):
 
 ![image](https://user-images.githubusercontent.com/114284732/213482351-4b89aa2f-5c07-4369-903b-64dba4f3dd95.png)
 
-2.  On the settings tab you have to address two things:
+3.  On the settings tab you have to address two things:
 A. **Config Vars**
   Add to vars: CRED and as value cres.json content, and second var PORT and 8000 as value
   
@@ -253,7 +259,7 @@ B. **Build Packs**
   
   ![image](https://user-images.githubusercontent.com/114284732/213483833-2822f9c4-4199-42e3-8a33-9f8322fcb253.png)
 
-3. Deploy tab
+4. Deploy tab
 A. Connect Heroku app with GitHub and select the correct repository:
 
 ![image](https://user-images.githubusercontent.com/114284732/213482680-dc948d5c-36e0-4bc1-869c-7841e70a92d9.png)
